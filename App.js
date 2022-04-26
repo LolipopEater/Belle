@@ -1,7 +1,7 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { StatusBar, StyleSheet, SafeAreaView, Text, View } from "react-native";
-
+//sda
 export default function App() {
   return (
     <>
