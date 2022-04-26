@@ -1,7 +1,11 @@
 import React from "react";
-import { Text,StyleSheet} from "react-native";
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import {StyleSheet} from "react-native";
+import {Card} from 'react-native-paper';
+import styled from 'styled-components/native'
 
+const Title = styled.Text`
+  background-color: papayawhip;
+`
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Restaurant",
