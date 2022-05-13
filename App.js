@@ -13,6 +13,7 @@ import {
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { SafeArea } from "./src/components/utility/safe-area.component";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 const Tab = createBottomTabNavigator();
 
 const MapScreen = () => {
@@ -69,13 +70,15 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator screenOptions={screenOptions}>
-            <Tab.Screen name="Resteraunts" component={HomeScreen} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
+        <RestaurantsContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator screenOptions={screenOptions}>
+              <Tab.Screen name="Resteraunts" component={HomeScreen} />
+              <Tab.Screen name="Map" component={MapScreen} />
+              <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </RestaurantsContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

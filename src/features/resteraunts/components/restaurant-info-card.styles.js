@@ -2,8 +2,8 @@ import styled from "styled-components/native";
 import { Card } from "react-native-paper";
 
 export const Icon = styled.Image`
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 17px;
 `;
 
 export const RestaurantCard = styled(Card)`
