@@ -7,7 +7,7 @@ import { Platform } from "react-native";
 const CompactImage = styled.Image`
   border-radius: 10px;
   width: 120px;
-  height: 1000px;
+  height: 100px;
 `;
 const CompactWebview = styled(WebView)`
   border-radius: 10px;
