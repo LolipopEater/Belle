@@ -4,6 +4,8 @@ import open from "../../../../assets/open";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { SvgXml } from "react-native-svg";
 import { Text } from "../../../components/typography/text.commponent";
+import { Favourite } from "../../../components/favourites/favourite.component";
+
 import {
   Icon,
   RestaurantCard,
@@ -14,7 +16,13 @@ import {
   Section,
   SectionEnd,
 } from "../components/restaurant-info-card.styles";
-
+import styled from "styled-components";
+const FavouriteButton = styled.View`
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 9;
+`;
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name,
@@ -32,6 +40,10 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const RatingArray = Array.from(new Array(Math.floor(rating)));
   return (
     <RestaurantCard elevation={5}>
+      <FavouriteButton></FavouriteButton>
+
+      <Favourite restaurant={restaurant} />
+
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>

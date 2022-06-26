@@ -5,7 +5,7 @@ import { RestaurantsNavigator } from "./restaurants.navigator";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Text } from "react-native";
 import { SafeArea } from "../../components/utility/safe-area.component";
-import { MapScreen } from "../../features/resteraunts/map/screens/map.screen";
+import { MapScreen } from "../../features/map/screens/map.screen";
 const Tab = createBottomTabNavigator();
 const TAB_ICON = {
   Restaurants: "ios-fast-food",

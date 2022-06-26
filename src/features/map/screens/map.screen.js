@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import MapView from "react-native-maps";
 import { Search } from "../components/search.component";
 import styled from "styled-components";
-import { LocationContext } from "../../../../services/location/location.context";
-import { RestaurantsContext } from "../../../../services/restaurants/restaurants.context";
+import { LocationContext } from "../../../services/location/location.context";
+import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import { MapCallout } from "../components/map-callout.component";
 const Map = styled(MapView)`
 height:100%
