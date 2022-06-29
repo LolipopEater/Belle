@@ -12,7 +12,8 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { Navigation } from "./src/infrastructure/navigation";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import * as firebase from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,9 +28,9 @@ const firebaseConfig = {
   appId: "1:791921958060:web:b82d89d7a62cbcf6489309",
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
+if (getApps().length === 0) {
+  initializeApp(firebaseConfig);
+}
 export default function App() {
   const [oswaldLoaded, error] = useOswald({
     Oswald_400Regular,
