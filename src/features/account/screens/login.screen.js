@@ -7,6 +7,8 @@ import {
   LoginContainer,
   Submit,
   TextField,
+  Title,
+  Back,
 } from "../components/login.styles";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
@@ -23,10 +25,14 @@ export const LoginScreen = ({ navigation }) => {
       console.log(error);
     }
   };
+  const onBack = () => {
+    navigation.navigate("Main");
+  };
 
   return (
     <LoginBackground>
       <LoginCover />
+      <Title>Meals To Go</Title>
       <LoginContainer>
         <TextField
           label="Email"
@@ -37,8 +43,9 @@ export const LoginScreen = ({ navigation }) => {
         <TextField
           label="Password"
           value={password}
+          secureTextEntry={true}
           onChangeText={(t) => setPassword(t)}
-          secure
+          secure={true}
         />
         {error && (
           <Spacer size="large">
@@ -48,9 +55,13 @@ export const LoginScreen = ({ navigation }) => {
         <Spacer size="large" />
         <Spacer size="large" />
         <Submit title="Login" onPress={onSubmit}>
-          Submit
+          Login
         </Submit>
       </LoginContainer>
+      <Spacer size="large" />
+      <Back title="Register" onPress={onBack} icon="keyboard-backspace">
+        Back
+      </Back>
     </LoginBackground>
   );
 };
