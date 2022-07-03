@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.commponent";
+import LottieView from "lottie-react-native";
 import {
   LoginBackground,
   LoginCover,
@@ -11,11 +12,13 @@ import {
   Back,
 } from "../components/login.styles";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-
+import { ActivityIndicator } from "react-native";
 export const LoginScreen = ({ navigation }) => {
   const [userName, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin, isAuthenticated, error } = useContext(AuthenticationContext);
+  const { onLogin, isAuthenticated, error, isLoading } = useContext(
+    AuthenticationContext
+  );
 
   const onSubmit = () => {
     onLogin(userName, password);
@@ -54,9 +57,13 @@ export const LoginScreen = ({ navigation }) => {
         )}
         <Spacer size="large" />
         <Spacer size="large" />
-        <Submit title="Login" onPress={onSubmit}>
-          Login
-        </Submit>
+        {isLoading ? (
+          <ActivityIndicator size="small" color="#0000ff" />
+        ) : (
+          <Submit title="Login" onPress={onSubmit}>
+            Login
+          </Submit>
+        )}
       </LoginContainer>
       <Spacer size="large" />
       <Back title="Register" onPress={onBack} icon="keyboard-backspace">
