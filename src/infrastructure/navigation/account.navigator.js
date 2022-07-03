@@ -4,7 +4,6 @@ import { AccountScreen } from "../../features/account/screens/account.screen";
 import { LoginScreen } from "../../features/account/screens/login.screen";
 import { RegisterScreen } from "../../features/account/screens/register.screen";
 const Stack = createStackNavigator();
-import { Text, View } from "react-native";
 const screenOptions = ({ route }) => {
   return {
     tabBarActiveTintColor: "purple",

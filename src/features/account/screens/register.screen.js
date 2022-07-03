@@ -12,12 +12,12 @@ import {
 } from "../components/register.styles";
 import { Text } from "../../../components/typography/text.commponent";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-
+import { ActivityIndicator } from "react-native";
 export const RegisterScreen = ({ navigation }) => {
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const [reapeatedPassword, setRepeatedPassword] = useState("");
-  const { isAuthenticated, error, onRegister } = useContext(
+  const { isAuthenticated, error, onRegister, isLoading } = useContext(
     AuthenticationContext
   );
 
@@ -65,9 +65,13 @@ export const RegisterScreen = ({ navigation }) => {
           </ErrorContainer>
         )}
         <Spacer size="large" />
-        <Submit title="Register" onPress={onSubmit}>
-          Submit
-        </Submit>
+        {isLoading ? (
+          <ActivityIndicator size="small" color="#0000ff" />
+        ) : (
+          <Submit title="Register" onPress={onSubmit}>
+            Submit
+          </Submit>
+        )}
       </RegisterContainer>
       <Spacer size="large" />
       <Back title="Register" onPress={onBack} icon="keyboard-backspace">
