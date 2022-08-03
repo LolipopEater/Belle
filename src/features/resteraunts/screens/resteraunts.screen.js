@@ -13,11 +13,12 @@ const Activity = styled(ActivityIndicator)`
   flex: 1;
   align-items: center;
 `;
-const RestaurantList = styled(FlatList).attrs({
+export const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
     padding: 25,
   },
 })``;
+
 export const ResterauntsScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
   const [isToggled, setIsToggled] = useState(false);
