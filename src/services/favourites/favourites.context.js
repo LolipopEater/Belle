@@ -40,12 +40,12 @@ export const FavouritesContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      loadFavourites(user.user.uid);
+      loadFavourites(user.uid);
     }
   }, [user]);
   useEffect(() => {
-    if (user && user.user.uid && favourites.length) {
-      storeFavourites(favourites, user.user.uid);
+    if (user && user.uid && favourites.length) {
+      storeFavourites(favourites, user.uid);
     }
   }, [favourites, user]);
   return (

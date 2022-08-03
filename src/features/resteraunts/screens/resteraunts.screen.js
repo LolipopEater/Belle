@@ -9,6 +9,7 @@ import { ActivityIndicator, Colors } from "react-native-paper";
 import { Search } from "../components/search.component";
 import { FavouriteBar } from "../../../components/favourites/favourites-bar";
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
+import { FaceInView } from "../../../components/animations/fade.animation";
 const Activity = styled(ActivityIndicator)`
   flex: 1;
   align-items: center;
@@ -47,9 +48,11 @@ export const ResterauntsScreen = ({ navigation }) => {
                   navigation.navigate("RestaurantDetail", { restaurant: item })
                 }
               >
-                <Spacer position="bottom" size="large">
-                  <RestaurantInfoCard restaurant={item} />
-                </Spacer>
+                <FaceInView>
+                  <Spacer position="bottom" size="large">
+                    <RestaurantInfoCard restaurant={item} />
+                  </Spacer>
+                </FaceInView>
               </TouchableOpacity>
             );
           }}

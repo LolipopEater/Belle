@@ -1,15 +1,35 @@
+import { getAuth } from "firebase/auth";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   loginRequest,
   registerRequest,
   logOut,
+  onAuthChange,
 } from "./authentication.service";
+
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  // getAuth().beforeAuthStateChanged((usr) => {
+  //   console.log(usr);c
+  //   if (usr) {
+  //     setUser(usr);
+  //     setIsLoading(false);
+  //   } else {
+  //     setIsLoading(false);
+  //   }
+  // });
+  getAuth().onAuthStateChanged((usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
 
   const onLogin = (email, password) => {
     setIsLoading(true);

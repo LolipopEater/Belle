@@ -23,7 +23,7 @@ export const SettingsScreen = ({ navigation }) => {
       <AvatarContainer>
         <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
         <Spacer position="top" size="large">
-          <Text variant="label">{user._tokenResponse.email}</Text>
+          <Text variant="label">{user.email}</Text>
         </Spacer>
       </AvatarContainer>
 
@@ -39,7 +39,7 @@ export const SettingsScreen = ({ navigation }) => {
           style={{ padding: 16 }}
           title="LogOut"
           left={(props) => <List.Icon {...props} color="black" icon="door" />}
-          onPress={() => navigation.navigate("Favourites")}
+          onPress={() => press()}
         />
       </List.Section>
     </SafeArea>
