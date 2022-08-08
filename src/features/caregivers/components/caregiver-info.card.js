@@ -5,17 +5,17 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { SvgXml } from "react-native-svg";
 import { Text } from "../../../components/typography/text.commponent";
 import { Favourite } from "../../../components/favourites/favourite.component";
-
 import {
   Icon,
-  RestaurantCard,
-  RestaurantCardCover,
+  CareGiverCard,
+  CareGiverCardCover,
   Address,
   Info,
   Rating,
   Section,
   SectionEnd,
-} from "../components/restaurant-info-card.styles";
+} from "../components/caregiver-info-card.styles";
+
 import styled from "styled-components";
 const FavouriteButton = styled.View`
   position: absolute;
@@ -23,28 +23,28 @@ const FavouriteButton = styled.View`
   right: 25px;
   z-index: 9;
 `;
-export const RestaurantInfoCard = ({ restaurant = {} }) => {
+export const CareGiverInfoCard = ({ CareGivers = {} }) => {
   const {
     name,
     icon,
     photos = [
       "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
     ],
-    address = restaurant.vicinity,
-    isOpenNow = restaurant.open_now,
-    rating = restaurant.rating,
-    isClosedTemporarily = restaurant.business_status === "OPERATIONAL"
+    address = CareGivers.vicinity,
+    isOpenNow = CareGivers.open_now,
+    rating = CareGivers.rating,
+    isClosedTemporarily = CareGivers.business_status === "OPERATIONAL"
       ? true
       : false,
-  } = restaurant;
+  } = CareGivers;
   const RatingArray = Array.from(new Array(Math.floor(rating)));
   return (
-    <RestaurantCard elevation={5}>
+    <CareGiverCard>
       <FavouriteButton></FavouriteButton>
 
-      <Favourite restaurant={restaurant} />
+      <Favourite CareGiver={CareGivers} />
 
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <CareGiverCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
         <Section>
@@ -66,6 +66,6 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
         </Section>
         <Address>{address}</Address>
       </Info>
-    </RestaurantCard>
+    </CareGiverCard>
   );
 };

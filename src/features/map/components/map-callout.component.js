@@ -1,6 +1,6 @@
 import React from "react";
-import { CompactRestaurantInfo } from "../../../components/restaurant/compact-restaurant-info.js";
+import { CompactCareGiverInfo } from "../../../components/caregiver/compact-caregiver-info";
 
-export const MapCallout = ({ restaurant }) => {
-  return <CompactRestaurantInfo restaurant={restaurant} isMap={true} />;
+export const MapCallout = ({ CareGiver }) => {
+  return <CompactCareGiverInfo CareGiver={CareGiver} isMap={true} />;
 };

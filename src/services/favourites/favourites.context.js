@@ -6,13 +6,13 @@ export const FavouritesContext = createContext();
 export const FavouritesContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
   const [favourites, setFavourites] = useState([]);
-  const add = (restaurant) => {
-    setFavourites([...favourites, restaurant]);
+  const add = (CareGiver) => {
+    setFavourites([...favourites, CareGiver]);
   };
 
-  const remove = (restaurant) => {
+  const remove = (CareGiver) => {
     const newFavourites = favourites.filter(
-      (x) => x.placeId !== restaurant.placeId
+      (x) => x.placeId !== CareGiver.placeId
     );
 
     setFavourites(newFavourites);

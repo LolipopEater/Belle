@@ -77,7 +77,7 @@
       "types": [
         "spa",
         "lodging",
-        "restaurant",
+        "CareGiver",
         "food",
         "gym",
         "health",
@@ -128,7 +128,7 @@
       "types": [
         "travel_agency",
         "lodging",
-        "restaurant",
+        "CareGiver",
         "food",
         "point_of_interest",
         "establishment"
@@ -154,7 +154,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "The Glorious Inn",
       "opening_hours": {
         "open_now": false
@@ -229,8 +229,8 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-      "name": "De Peerdestal | Restaurant Antwerpen",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
+      "name": "De Peerdestal | CareGiver Antwerpen",
       "opening_hours": {
         "open_now": true
       },
@@ -267,7 +267,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "Huis De Colvenier",
       "opening_hours": {
         "open_now": true
@@ -304,7 +304,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "Il Milanese by Lollapalooza",
       "opening_hours": {
         "open_now": true
@@ -342,7 +342,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "Het Vermoeide Model",
       "opening_hours": {
         "open_now": true
@@ -380,7 +380,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "'t Fornuis",
       "opening_hours": {
         "open_now": false
@@ -402,7 +402,7 @@
       "rating": 4.7,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": ["CareGiver", "food", "point_of_interest", "establishment"],
       "user_ratings_total": 152,
       "vicinity": "Reyndersstraat 24, Antwerpen"
     },
@@ -424,7 +424,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "Lunchbox",
       "opening_hours": {
         "open_now": false
@@ -447,7 +447,7 @@
       "reference": "",
       "scope": "",
       "types": [
-        "restaurant",
+        "CareGiver",
         "bar",
         "food",
         "point_of_interest",
@@ -474,7 +474,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "Zuiderterras / RAS",
       "opening_hours": {
         "open_now": true
@@ -497,7 +497,7 @@
       "reference": "",
       "scope": "",
       "types": [
-        "restaurant",
+        "CareGiver",
         "cafe",
         "food",
         "point_of_interest",
@@ -524,7 +524,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "Pazzo",
       "opening_hours": {
         "open_now": false
@@ -546,7 +546,7 @@
       "rating": 4.5,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": ["CareGiver", "food", "point_of_interest", "establishment"],
       "user_ratings_total": 316,
       "vicinity": "Oudeleeuwenrui 12, Antwerpen"
     },
@@ -568,7 +568,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "Horta Grand Café & Art Nouveau Zaal",
       "opening_hours": {
         "open_now": true
@@ -590,7 +590,7 @@
       "rating": 4.1,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": ["CareGiver", "food", "point_of_interest", "establishment"],
       "user_ratings_total": 1274,
       "vicinity": "Hopland 2, Antwerpen"
     },
@@ -612,7 +612,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "Sir Anthony Van Dijck",
       "opening_hours": {
         "open_now": false
@@ -634,7 +634,7 @@
       "rating": 4.4,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": ["CareGiver", "food", "point_of_interest", "establishment"],
       "user_ratings_total": 311,
       "vicinity": "Oude Koornmarkt 16, Antwerpen"
     },
@@ -680,7 +680,7 @@
       "types": [
         "cafe",
         "lodging",
-        "restaurant",
+        "CareGiver",
         "food",
         "point_of_interest",
         "store",
@@ -707,7 +707,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "De Broers van Julienne",
       "opening_hours": {
         "open_now": true
@@ -731,7 +731,7 @@
       "scope": "",
       "types": [
         "meal_takeaway",
-        "restaurant",
+        "CareGiver",
         "food",
         "point_of_interest",
         "establishment"
@@ -757,7 +757,7 @@
           }
         }
       },
-      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/CareGiver-71.png",
       "name": "Het Gebaar",
       "opening_hours": {
         "open_now": false
@@ -779,7 +779,7 @@
       "rating": 4.7,
       "reference": "",
       "scope": "",
-      "types": ["restaurant", "food", "point_of_interest", "establishment"],
+      "types": ["CareGiver", "food", "point_of_interest", "establishment"],
       "user_ratings_total": 362,
       "vicinity": "Leopoldstraat 24, Antwerpen"
     }

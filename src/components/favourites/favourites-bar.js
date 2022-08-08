@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import { CompactRestaurantInfo } from "../restaurant/compact-restaurant-info";
+import { CompactCareGiverInfo } from "../caregiver/compact-caregiver-info";
 import { Spacer } from "../spacer/spacer.component";
 
 const FavouritesWrapper = styled.View`
@@ -19,18 +19,18 @@ export const FavouriteBar = ({ favourites, onNavigate }) => {
       </Spacer>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {favourites.map((restaurant) => {
-          const key = restaurant.name;
+        {favourites.map((CareGiver) => {
+          const key = CareGiver.name;
           return (
             <Spacer key={key} position="left" size="medium">
               <TouchableOpacity
                 onPress={() =>
-                  onNavigate("RestaurantDetail", {
-                    restaurant: restaurant,
+                  onNavigate("CareGiverDetail", {
+                    CareGiver: CareGiver,
                   })
                 }
               >
-                <CompactRestaurantInfo restaurant={restaurant} isMap={false} />
+                <CompactCareGiverInfo CareGiver={CareGiver} isMap={false} />
               </TouchableOpacity>
             </Spacer>
           );

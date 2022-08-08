@@ -1,27 +1,24 @@
 import React, { useState, createContext, useEffect, useContext } from "react";
 import { LocationContext } from "../location/location.context";
-import {
-  restaurantsRequest,
-  restaurantsTransform,
-} from "./restaurants.service";
+import { CareGiversRequest, CareGiversTransform } from "./caregiver.service";
 
-export const RestaurantsContext = createContext();
+export const CareGiversContext = createContext();
 
-export const RestaurantsContextProvider = ({ children }) => {
-  const [restaurants, setRestaurants] = useState([]);
+export const CareGiversContextProvider = ({ children }) => {
+  const [CareGivers, setCareGivers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { location } = useContext(LocationContext);
 
-  const retrieveRestaurants = (formattedlocation) => {
+  const retrieveCareGivers = (formattedlocation) => {
     setIsLoading(true);
-    setRestaurants([]);
+    setCareGivers([]);
     setTimeout(() => {
-      restaurantsRequest(formattedlocation)
-        .then(restaurantsTransform)
+      CareGiversRequest(formattedlocation)
+        .then(CareGiversTransform)
         .then((results) => {
           setIsLoading(false);
-          setRestaurants(results);
+          setCareGivers(results);
         })
         .catch((err) => {
           setIsLoading(false);
@@ -32,18 +29,18 @@ export const RestaurantsContextProvider = ({ children }) => {
   useEffect(() => {
     if (location) {
       const formattedlocation = `${location.lat},${location.lng}`;
-      retrieveRestaurants(formattedlocation);
+      retrieveCareGivers(formattedlocation);
     }
   }, [location]);
   return (
-    <RestaurantsContext.Provider
+    <CareGiversContext.Provider
       value={{
-        restaurants,
+        CareGivers,
         isLoading,
         error,
       }}
     >
       {children}
-    </RestaurantsContext.Provider>
+    </CareGiversContext.Provider>
   );
 };

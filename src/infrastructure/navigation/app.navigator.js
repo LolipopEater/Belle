@@ -1,15 +1,15 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { RestaurantsNavigator } from "./restaurants.navigator";
+import { CareGiversNavigator } from "./caregiver.navigator";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
 import { LocationContextProvider } from "../../services/location/location.context";
-import { RestaurantsContextProvider } from "../../services/restaurants/restaurants.context";
+import { CareGiversContextProvider } from "../../services/caregivers/caregiver.context";
 import { MapScreen } from "../../features/map/screens/map.screen";
 import { SettingsNavigator } from "./settings.navigator";
 const Tab = createBottomTabNavigator();
 const TAB_ICON = {
-  Restaurants: "ios-fast-food",
+  CareGivers: "ios-fast-food",
   Settings: "ios-list-circle",
   Map: "map-sharp",
 };
@@ -29,13 +29,13 @@ const screenOptions = ({ route }) => {
 export const AppNavigator = () => (
   <FavouritesContextProvider>
     <LocationContextProvider>
-      <RestaurantsContextProvider>
+      <CareGiversContextProvider>
         <Tab.Navigator screenOptions={screenOptions}>
-          <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+          <Tab.Screen name="CareGivers" component={CareGiversNavigator} />
           <Tab.Screen name="Map" component={MapScreen} />
           <Tab.Screen name="Settings" component={SettingsNavigator} />
         </Tab.Navigator>
-      </RestaurantsContextProvider>
+      </CareGiversContextProvider>
     </LocationContextProvider>
   </FavouritesContextProvider>
 );

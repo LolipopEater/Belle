@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { RestaurantInfoCard } from "../components/resteraunt-info.card";
+import { CareGiverInfoCard } from "../components/caregiver-info.card";
 import { List } from "react-native-paper";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 
 import { ScrollView } from "react-native";
 
-export const RestaurantDetailScreen = ({ route }) => {
+export const CareGiverDetailScreen = ({ route }) => {
   const { breakfest, setBreakFest } = useState(null);
   const { lunch, setLunch } = useState(null);
   const { dinner, setDinner } = useState(null);
 
-  const { restaurant } = route.params;
+  const { CareGiver } = route.params;
   return (
     <SafeArea>
       <ScrollView>
-        <RestaurantInfoCard restaurant={restaurant} />
+        <CareGiverInfoCard CareGivers={CareGiver} />
         <List.Section title="Accordions">
           <List.Accordion
             title="breakfest"

@@ -3,10 +3,10 @@ import { FavouritesContext } from "../../../services/favourites/favourites.conte
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Text } from "../../../components/typography/text.commponent";
 import styled from "styled-components/native";
-import { RestaurantList } from "../../resteraunts/components/restaurant-list.styles";
+import { CareGiverList } from "../../caregivers/components/caregiver-list.styles";
 import { TouchableOpacity } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
-import { RestaurantInfoCard } from "../../resteraunts/components/resteraunt-info.card";
+import { CareGiverInfoCard } from "../../caregivers/components/caregiver-info.card";
 const NoFavouritesArea = styled(SafeArea)`
   align-items: center;
   justify-content: center;
@@ -16,17 +16,17 @@ export const FavouritesScreen = ({ navigation }) => {
 
   return favourites.length ? (
     <SafeArea>
-      <RestaurantList
+      <CareGiverList
         data={favourites}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("RestaurantDetail", { restaurant: item })
+                navigation.navigate("CareGiverDetail", { CareGiver: item })
               }
             >
               <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
+                <CareGiverInfoCard CareGivers={item} />
               </Spacer>
             </TouchableOpacity>
           );
