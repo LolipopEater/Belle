@@ -37,7 +37,7 @@ export const RegisterScreen = ({ navigation }) => {
   return (
     <RegisterBackground>
       <RegisterCover />
-      <Title>Meals To Go</Title>
+      <Title>Belle♥</Title>
       <RegisterContainer>
         <TextField
           label="Email"

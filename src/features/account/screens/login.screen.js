@@ -35,7 +35,7 @@ export const LoginScreen = ({ navigation }) => {
   return (
     <LoginBackground>
       <LoginCover />
-      <Title>Meals To Go</Title>
+      <Title>Belle♥</Title>
       <LoginContainer>
         <TextField
           label="Email"
