@@ -38,6 +38,7 @@ export const CareGiverInfoCard = ({ CareGivers = {} }) => {
       : false,
   } = CareGivers;
   const RatingArray = Array.from(new Array(Math.floor(rating)));
+
   return (
     <CareGiverCard>
       <FavouriteButton></FavouriteButton>
