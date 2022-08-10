@@ -7,8 +7,11 @@ import { CareGiverDetailScreen } from "../../features/caregivers/screens/caregiv
 import { CareGiversScreen } from "../../features/caregivers/screens/caregiver.screen";
 const CareGiverStack = createStackNavigator();
 
+//Care giver Screen Navigation system
+
 export const CareGiversNavigator = () => {
   return (
+    //options for the Navigator of caregivers deafult set to home
     <CareGiverStack.Navigator
       initialRouteName="Home"
       screenOptions={() => ({

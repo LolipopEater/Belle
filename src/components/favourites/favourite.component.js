@@ -3,7 +3,6 @@ import styled from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { FavouritesContext } from "../../services/favourites/favourites.context";
-import { CompactCareGiverInfo } from "../caregiver/compact-caregiver-info";
 const FavouriteButton = styled(TouchableOpacity)`
   position: absolute;
   top: 25px;

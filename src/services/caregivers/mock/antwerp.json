@@ -3,6 +3,7 @@
   "next_page_token": "some token",
   "results": [
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -87,6 +88,7 @@
       "vicinity": "Lange Gasthuisstraat 45, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -137,6 +139,7 @@
       "vicinity": "Handschoenmarkt 3/5, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -174,6 +177,7 @@
       "vicinity": "De Burburestraat 4A, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -212,6 +216,7 @@
       "vicinity": "Leopold de Waelplaats 34, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -250,6 +255,7 @@
       "vicinity": "Wijngaardstraat 8, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -287,6 +293,7 @@
       "vicinity": "Sint-Antoniusstraat 8, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -325,6 +332,7 @@
       "vicinity": "Pelgrimstraat 28, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -363,6 +371,7 @@
       "vicinity": "Lijnwaadmarkt 2, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -407,6 +416,7 @@
       "vicinity": "Reyndersstraat 24, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -457,6 +467,7 @@
       "vicinity": "Nieuwstad 8, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -507,6 +518,7 @@
       "vicinity": "Ernest Van Dijckkaai 37, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -551,6 +563,7 @@
       "vicinity": "Oudeleeuwenrui 12, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -595,6 +608,7 @@
       "vicinity": "Hopland 2, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -639,6 +653,7 @@
       "vicinity": "Oude Koornmarkt 16, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -690,6 +705,7 @@
       "vicinity": "Scheldestraat 15, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {
@@ -740,6 +756,7 @@
       "vicinity": "Kasteelpleinstraat 45/47, Antwerpen"
     },
     {
+      "isfeatured":true,
       "business_status": "OPERATIONAL",
       "geometry": {
         "location": {

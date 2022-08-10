@@ -19,3 +19,5 @@ export const mockImages = [
   "https://www.foodiesfeed.com/wp-content/uploads/2019/02/messy-pizza-on-a-black-table-600x400.jpg",
   "https://www.foodiesfeed.com/wp-content/uploads/2019/02/pizza-ready-for-baking-600x400.jpg",
 ];
+
+export const mockFace = ["http://notarealhuman.com/face"];

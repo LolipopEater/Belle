@@ -14,6 +14,7 @@ const TAB_ICON = {
   Map: "map-sharp",
 };
 const screenOptions = ({ route }) => {
+  //routing bottoms Icons and settings
   const iconName = TAB_ICON[route.name];
 
   return {
@@ -30,6 +31,7 @@ export const AppNavigator = () => (
   <FavouritesContextProvider>
     <LocationContextProvider>
       <CareGiversContextProvider>
+        {/* {routing system for Customer Portal} */}
         <Tab.Navigator screenOptions={screenOptions}>
           <Tab.Screen name="CareGivers" component={CareGiversNavigator} />
           <Tab.Screen name="Map" component={MapScreen} />

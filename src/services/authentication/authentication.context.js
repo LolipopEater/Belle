@@ -13,15 +13,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  // getAuth().beforeAuthStateChanged((usr) => {
-  //   console.log(usr);c
-  //   if (usr) {
-  //     setUser(usr);
-  //     setIsLoading(false);
-  //   } else {
-  //     setIsLoading(false);
-  //   }
-  // });
+
   getAuth().onAuthStateChanged((usr) => {
     if (usr) {
       setUser(usr);

@@ -8,6 +8,7 @@ import { MapCallout } from "../components/map-callout.component";
 const Map = styled(MapView)`
 height:100%
 width:100%`;
+
 export const MapScreen = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { CareGivers = [] } = useContext(CareGiversContext);

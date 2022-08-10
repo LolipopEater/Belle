@@ -10,6 +10,7 @@ import { Search } from "../components/search.component";
 import { FavouriteBar } from "../../../components/favourites/favourites-bar";
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
 import { FaceInView } from "../../../components/animations/fade.animation";
+import { FeaturedBar } from "../../../components/featured/featured-bar.component";
 const Activity = styled(ActivityIndicator)`
   flex: 1;
   align-items: center;
@@ -21,9 +22,11 @@ export const CareGiverList = styled(FlatList).attrs({
 })``;
 
 export const CareGiversScreen = ({ navigation }) => {
-  const { CareGivers, isLoading, error } = useContext(CareGiversContext);
+  const { CareGivers, isLoading, Featured, error } =
+    useContext(CareGiversContext);
   const [isToggled, setIsToggled] = useState(false);
   const { favourites } = useContext(FavouritesContext);
+
   const onPress = () => {
     setIsToggled(!isToggled);
   };
@@ -37,7 +40,7 @@ export const CareGiversScreen = ({ navigation }) => {
           onNavigate={navigation.navigate}
         />
       )}
-
+      <FeaturedBar CareGivers={Featured} onNavigate={navigation} />
       {!isLoading ? (
         <CareGiverList
           data={CareGivers}
