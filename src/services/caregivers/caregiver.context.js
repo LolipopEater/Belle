@@ -37,17 +37,11 @@ export const CareGiversContextProvider = ({ children }) => {
       return;
     }
 
-    CareGivers.map((CareGiver) => {
-      if (CareGiver.isfeatured)
-        return {
-          ...CareGiver,
-          isOpenNow:
-            CareGiver.opening_hours && CareGiver.opening_hours.open_now,
-          isClosedTemporarily:
-            CareGiver.business_status === "CLOSED_TEMPORARILY",
-        };
-      return;
+    const feat = CareGivers.filter((CareGiver) => {
+      return CareGiver.isfeatured === true;
     });
+    console.log(feat);
+    setFeatured(feat);
   };
   useEffect(() => {
     if (location) {

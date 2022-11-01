@@ -19,13 +19,27 @@ const Item = styled.View`
   max-width: 120px;
   align-items: center;
 `;
+
+const RecomendedImage = styled.Image`
+  border-radius: 360px;
+  width: 70px;
+  height: 70px;
+`;
 const isAndroid = Platform.OS === "android";
 
-export const CompactCareGiverInfo = ({ CareGiver, isMap }) => {
+export const CompactCareGiverInfo = ({ CareGiver, isMap, isRecommended }) => {
   const Image = isAndroid && isMap ? CompactWebview : CompactImage;
-  return (
+
+  return !isRecommended ? (
     <Item>
-      <Image source={{ uri: CareGiver.photos[0] }} />
+      {<Image source={{ uri: CareGiver.photos[0] }} />}
+      <Text center variant="caption" numberOfLines={3}>
+        {CareGiver.name}
+      </Text>
+    </Item>
+  ) : (
+    <Item>
+      {<RecomendedImage source={{ uri: CareGiver.photos[0] }} />}
       <Text center variant="caption" numberOfLines={3}>
         {CareGiver.name}
       </Text>
