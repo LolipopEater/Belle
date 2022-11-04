@@ -40,7 +40,7 @@ export const CareGiversContextProvider = ({ children }) => {
     const feat = CareGivers.filter((CareGiver) => {
       return CareGiver.isfeatured === true;
     });
-    console.log(feat);
+
     setFeatured(feat);
   };
   useEffect(() => {

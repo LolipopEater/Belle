@@ -1,14 +1,9 @@
-import { mocks, mockImages } from "./mock";
 import camelize from "camelize";
+import { host } from "../../utils/env";
 
 export const CareGiversRequest = (location) => {
-  return new Promise((resolve, reject) => {
-    const mock = mocks[location];
-    if (!mock) {
-      reject("not found");
-    } else {
-      resolve(mock);
-    }
+  return fetch(`${host}/placesNearBy?location=${location}`).then((res) => {
+    return res.json();
   });
 };
 
@@ -27,12 +22,8 @@ export const CareGiversFeatured = ({ results = [] }) => {
   return camelize(mappedResults);
 };
 
-export const CareGiversTransform = ({ results = [] }) => {
+export const CareGiversTransform = (results) => {
   const mappedResults = results.map((CareGiver) => {
-    CareGiver.photos = CareGiver.photos.map((p) => {
-      return mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
-    });
-
     return {
       ...CareGiver,
       isOpenNow: CareGiver.opening_hours && CareGiver.opening_hours.open_now,

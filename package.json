@@ -17,6 +17,7 @@
     "@expo-google-fonts/inter": "^0.2.2",
     "@expo-google-fonts/lato": "^0.2.2",
     "@expo-google-fonts/oswald": "^0.2.2",
+    "@googlemaps/google-maps-services-js": "^3.3.16",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-firebase/app": "^15.0.0",
     "@react-native/normalize-color": "^2.0.0",

@@ -37,7 +37,7 @@ export const CareGiverInfoCard = ({ CareGivers = {} }) => {
       ? true
       : false,
   } = CareGivers;
-  const RatingArray = Array.from(new Array(Math.floor(rating)));
+  const RatingArray = Array.from(new Array(rating ? Math.floor(rating) : 0));
 
   return (
     <CareGiverCard>
