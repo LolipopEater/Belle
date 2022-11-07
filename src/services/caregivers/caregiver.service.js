@@ -1,10 +1,12 @@
 import camelize from "camelize";
-import { host } from "../../utils/env";
+import { host, isMock } from "../../utils/env";
 
 export const CareGiversRequest = (location) => {
-  return fetch(`${host}/placesNearBy?location=${location}`).then((res) => {
-    return res.json();
-  });
+  return fetch(`${host}/placesNearBy?location=${location}&mock=${isMock}`).then(
+    (res) => {
+      return res.json();
+    }
+  );
 };
 
 export const CareGiversFeatured = ({ results = [] }) => {
@@ -23,6 +25,9 @@ export const CareGiversFeatured = ({ results = [] }) => {
 };
 
 export const CareGiversTransform = (results) => {
+  if (isMock) {
+    results = results.results;
+  }
   const mappedResults = results.map((CareGiver) => {
     return {
       ...CareGiver,

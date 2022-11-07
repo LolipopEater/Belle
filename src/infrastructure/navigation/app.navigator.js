@@ -9,9 +9,9 @@ import { MapScreen } from "../../features/map/screens/map.screen";
 import { SettingsNavigator } from "./settings.navigator";
 const Tab = createBottomTabNavigator();
 const TAB_ICON = {
-  CareGivers: "ios-fast-food",
+  CareGivers: "disc-outline",
   Settings: "ios-list-circle",
-  Map: "map-sharp",
+  Map: "earth-outline",
 };
 const screenOptions = ({ route }) => {
   //routing bottoms Icons and settings

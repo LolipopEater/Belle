@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { colors } from "../../../infrastructure/theme/colors";
 import { Button, TextInput } from "react-native-paper";
 import { Text } from "../../../components/typography/text.commponent";
+import { TouchableOpacity } from "react-native";
 export const LoginBackground = styled.ImageBackground.attrs({
   source: require("../../../../assets/home_bg.jpg"),
 })`
@@ -44,4 +45,14 @@ export const Back = styled(Button).attrs({
   mode: "contained",
 })`
   padding: ${(props) => props.theme.space[2]};
+`;
+
+export const Schedule = styled(TouchableOpacity).attrs({})`
+  align-items: center;
+  background-color: ${colors.text.success};
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  justify-content: center;
 `;

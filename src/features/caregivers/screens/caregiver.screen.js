@@ -10,12 +10,10 @@ import { Search } from "../components/search.component";
 import { FavouriteBar } from "../../../components/favourites/favourites-bar";
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
 import { FaceInView } from "../../../components/animations/fade.animation";
-import { FeaturedBar } from "../../../components/featured/featured-bar.component";
-import { ScrollView } from "react-native-gesture-handler";
-import { Text } from "../../../components/typography/text.commponent";
+import { LocationContext } from "../../../services/location/location.context";
 import { RecommendedBar } from "../../recommended/recomended.component";
 import { rgba } from "polished";
-
+import { Text } from "../../../components/typography/text.commponent";
 const Activity = styled(ActivityIndicator)`
   flex: 1;
   align-items: center;
@@ -33,6 +31,15 @@ const TransAndroid = styled.View`
   right: 0;
   z-index: 5;
 `;
+
+const ErrorV = styled.View`
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 125%;
+  z-index: 3;
+`;
 const TransIOS = styled.View`
   background: ${rgba("#F1F1F1", 0.8)};
   position: absolute;
@@ -40,10 +47,12 @@ const TransIOS = styled.View`
   z-index: 4;
 `;
 export const CareGiversScreen = ({ navigation }) => {
+  const { error: locationError } = useContext(LocationContext);
   const { CareGivers, isLoading, Featured, error } =
     useContext(CareGiversContext);
   const [isToggled, setIsToggled] = useState(false);
   const { favourites } = useContext(FavouritesContext);
+  const hasError = locationError || error;
   const Wrap = Platform.OS === "android" ? TransAndroid : TransIOS;
   const onPress = () => {
     setIsToggled(!isToggled);
@@ -64,7 +73,17 @@ export const CareGiversScreen = ({ navigation }) => {
           onNavigate={navigation.navigate}
         />
       </Wrap>
-      {!isLoading ? (
+      {hasError && (
+        <ErrorV>
+          <Spacer position="left" size="large">
+            <Text variant="error">
+              Something went wrong retrieving the data
+            </Text>
+          </Spacer>
+        </ErrorV>
+      )}
+
+      {!hasError && !isLoading ? (
         <CareGiverList
           data={CareGivers}
           renderItem={({ item }) => {

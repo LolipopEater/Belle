@@ -2,54 +2,79 @@ import React, { useState } from "react";
 import { CareGiverInfoCard } from "../components/caregiver-info.card";
 import { List } from "react-native-paper";
 import { SafeArea } from "../../../components/utility/safe-area.component";
+import { Text } from "../../../components/typography/text.commponent";
+import { ScrollView, View } from "react-native";
+import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import styled from "styled-components";
+import { Schedule } from "../../account/components/login.styles";
 
-import { ScrollView } from "react-native";
+const SchedlueWrap = styled.View`
+  margin-top: 45px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+`;
 
 export const CareGiverDetailScreen = ({ route }) => {
   const { breakfest, setBreakFest } = useState(null);
   const { lunch, setLunch } = useState(null);
   const { dinner, setDinner } = useState(null);
-
+  console.log(route.params);
   const { CareGiver } = route.params;
   return (
     <SafeArea>
       <ScrollView>
         <CareGiverInfoCard CareGivers={CareGiver} />
-        <List.Section title="Accordions">
+        <List.Section title="Information">
           <List.Accordion
-            title="breakfest"
-            left={(props) => <List.Icon {...props} icon="food-variant" />}
+            title="About me"
+            left={(props) => <List.Icon {...props} icon="eye" />}
           >
-            <List.Item title="Eggs Benedict" />
-            <List.Item title="Classic Breakfast" />
+            <View>
+              <Text variant="body">TEST</Text>
+              <Text variant="caption">
+                akjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+                dasdaakjshdkajhsdkajhsdkjhaksdhkasd{"\n"}gdiashgdjgh{"\n"}
+              </Text>
+            </View>
           </List.Accordion>
-
           <List.Accordion
-            title="lunch"
-            left={(props) => <List.Icon {...props} icon="food" />}
+            title="Services"
+            left={(props) => <List.Icon {...props} icon="exclamation" />}
           >
             <List.Item title="Burger w/ Fries" />
             <List.Item title="Steak Sandwich" />
             <List.Item title="Mushroom Soup" />
           </List.Accordion>
-          <List.Accordion
-            title="Dinner"
-            left={(props) => <List.Icon {...props} icon="food-apple" />}
-          >
-            <List.Item title="Spaghetti Bolognese" />
-            <List.Item title="Veal Cutlet with Chicken Mushroom Rotini" />
-            <List.Item title="Steak Frites" />
-          </List.Accordion>
-          <List.Accordion
-            title="Drinks"
-            left={(props) => <List.Icon {...props} icon="glass-wine" />}
-          >
-            <List.Item title="Tea" />
-            <List.Item title="Modelo" />
-            <List.Item title="Coke" />
-            <List.Item title="Fanta" />
-          </List.Accordion>
         </List.Section>
+        <SchedlueWrap>
+          <Schedule title="Schedule">
+            <Text>Schedule</Text>
+          </Schedule>
+        </SchedlueWrap>
+        {/* <CalenderView>
+          <Calendar />
+        </CalenderView> */}
       </ScrollView>
     </SafeArea>
   );
