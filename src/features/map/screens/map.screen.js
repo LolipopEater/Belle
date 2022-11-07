@@ -9,6 +9,10 @@ const Map = styled(MapView)`
 height:100%
 width:100%`;
 
+const Small = styled(MapView)`
+height:70%
+width:70%`;
+
 export const MapScreen = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { CareGivers = [] } = useContext(CareGiversContext);
@@ -59,3 +63,53 @@ export const MapScreen = ({ navigation }) => {
     </>
   );
 };
+
+// export const CompactMap = ({ CareGiver }) => {
+//   const { location } = useContext(LocationContext);
+//   const { CareGivers = [] } = useContext(CareGiversContext);
+//   const [latDelta, setLatDelta] = useState(0);
+//   const { lat, lng, viewport } = location;
+
+//   useEffect(() => {
+//     const northeastLat = viewport.northeast.lat;
+//     const southwestLat = viewport.southwest.lat;
+//     const latDelta = northeastLat - southwestLat;
+//     setLatDelta(latDelta);
+//   }, [location, viewport]);
+
+//   return (
+//     <>
+//       <Small
+//         region={{
+//           latitude: lat,
+//           longitude: lng,
+//           latitudeDelta: latDelta,
+//           longitudeDelta: 0.02,
+//         }}
+//       >
+//         {CareGivers.map((CareGiver) => {
+//           return (
+//             <Small.Marker
+//               key={CareGiver.name}
+//               title={CareGiver.name}
+//               coordinate={{
+//                 latitude: CareGiver.geometry.location.lat,
+//                 longitude: CareGiver.geometry.location.lng,
+//               }}
+//             >
+//               <Small.Callout
+//                 onPress={() =>
+//                   navigation.navigate("CareGiverDetail", {
+//                     CareGiver,
+//                   })
+//                 }
+//               >
+//                 <MapCallout CareGiver={CareGiver} />
+//               </Small.Callout>
+//             </Small.Marker>
+//           );
+//         })}
+//       </Small>
+//     </>
+//   );
+// };
