@@ -1,25 +1,24 @@
 import React, { useState } from "react";
-import { CareGiverInfoCard } from "../components/caregiver-info.card";
-import { List } from "react-native-paper";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Text } from "../../../components/typography/text.commponent";
+import { ScheduleCalendar } from "../../Calendar/calendar.component";
 import { ScrollView, View } from "react-native";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import styled from "styled-components";
 import { Back, Submit } from "../../account/components/login.styles";
-// const CalenderView = styled.View`
-//   width: 100%;
-//   height: 100%;
-//   align-items: center;
-// `;
 
-export const CareGiverDetailScreen = ({ route }) => {
-  const { breakfest, setBreakFest } = useState(null);
+export const CareGiverScheduleScreen = ({ route, navigation }) => {
+  const onBack = () => {
+    navigation.goBack();
+  };
   console.log(route.params);
-  const { CareGiver } = route.params;
+  const { info } = route.params;
   return (
     <SafeArea>
-      <Text>{route.params}</Text>
+      <ScheduleCalendar />
+      <Text>{info.placeId}</Text>
+      <Back title="Register" onPress={onBack} icon="keyboard-backspace">
+        Back
+      </Back>
     </SafeArea>
   );
 };

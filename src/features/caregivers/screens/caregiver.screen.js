@@ -90,7 +90,10 @@ export const CareGiversScreen = ({ navigation }) => {
             return (
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("CareGiverDetail", { CareGiver: item })
+                  navigation.navigate("CareGiverDetail", {
+                    CareGiver: item,
+                    navigation: navigation,
+                  })
                 }
               >
                 <FaceInView>

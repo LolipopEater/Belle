@@ -15,12 +15,15 @@ const SchedlueWrap = styled.View`
   align-items: center;
 `;
 
-export const CareGiverDetailScreen = ({ route }) => {
+export const CareGiverDetailScreen = ({ route, navigation }) => {
   const { breakfest, setBreakFest } = useState(null);
   const { lunch, setLunch } = useState(null);
   const { dinner, setDinner } = useState(null);
   console.log(route.params);
   const { CareGiver } = route.params;
+  const item = () => {
+    console.log(CareGiver);
+  };
   return (
     <SafeArea>
       <ScrollView>
@@ -68,7 +71,15 @@ export const CareGiverDetailScreen = ({ route }) => {
           </List.Accordion>
         </List.Section>
         <SchedlueWrap>
-          <Schedule title="Schedule">
+          <Schedule
+            title="Schedule"
+            onPress={() =>
+              navigation.navigate("Schedule", {
+                info: CareGiver,
+                navigation: navigation,
+              })
+            }
+          >
             <Text>Schedule</Text>
           </Schedule>
         </SchedlueWrap>
