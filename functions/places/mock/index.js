@@ -26,4 +26,5 @@ module.exports.addmockImage = (CareGiver) => {
   CareGiver.photos = [randomImage];
   return CareGiver;
 };
+
 module.exports.mockFace = ["http://notarealhuman.com/face"];

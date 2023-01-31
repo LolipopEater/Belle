@@ -33,7 +33,7 @@ module.exports = {
           width: 6786,
         },
       ],
-      place_id: "some place id 41",
+      place_id: "2YIhJvmhQbYeK6uajdKa",
       plus_code: {
         compound_code: "",
         global_code: "",

@@ -19,7 +19,6 @@ export const CareGiverDetailScreen = ({ route, navigation }) => {
   const { breakfest, setBreakFest } = useState(null);
   const { lunch, setLunch } = useState(null);
   const { dinner, setDinner } = useState(null);
-  console.log(route.params);
   const { CareGiver } = route.params;
   const item = () => {
     console.log(CareGiver);

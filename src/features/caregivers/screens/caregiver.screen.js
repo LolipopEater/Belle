@@ -43,7 +43,7 @@ const ErrorV = styled.View`
 const TransIOS = styled.View`
   background: ${rgba("#F1F1F1", 0.8)};
   position: absolute;
-  margin-top: 40;
+  margin-top: 40px;
   z-index: 4;
 `;
 export const CareGiversScreen = ({ navigation }) => {
