@@ -8,12 +8,18 @@ import {
   Container,
 } from "./appointment.style";
 
-export const TimeSlotButtons = ({ startTime, endTime, interval }) => {
+export const TimeSlotButtons = ({
+  startTime,
+  endTime,
+  interval,
+  setTimeSelected,
+}) => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [chosen, setChosen] = useState(null);
 
   const onClick = (val) => {
     setChosen(val);
+    setTimeSelected(val);
   };
 
   useEffect(() => {

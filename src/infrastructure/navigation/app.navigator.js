@@ -5,6 +5,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
 import { LocationContextProvider } from "../../services/location/location.context";
 import { CareGiversContextProvider } from "../../services/caregivers/caregiver.context";
+import { SchedulerContextProvider } from "../../services/schedualer/scheduler.context";
 import { MapScreen } from "../../features/map/screens/map.screen";
 import { SettingsNavigator } from "./settings.navigator";
 const Tab = createBottomTabNavigator();
@@ -31,12 +32,14 @@ export const AppNavigator = () => (
   <FavouritesContextProvider>
     <LocationContextProvider>
       <CareGiversContextProvider>
-        {/* {routing system for Customer Portal} */}
-        <Tab.Navigator screenOptions={screenOptions}>
-          <Tab.Screen name="CareGivers" component={CareGiversNavigator} />
-          <Tab.Screen name="Map" component={MapScreen} />
-          <Tab.Screen name="Settings" component={SettingsNavigator} />
-        </Tab.Navigator>
+        <SchedulerContextProvider>
+          {/* {routing system for Customer Portal} */}
+          <Tab.Navigator screenOptions={screenOptions}>
+            <Tab.Screen name="CareGivers" component={CareGiversNavigator} />
+            <Tab.Screen name="Map" component={MapScreen} />
+            <Tab.Screen name="Settings" component={SettingsNavigator} />
+          </Tab.Navigator>
+        </SchedulerContextProvider>
       </CareGiversContextProvider>
     </LocationContextProvider>
   </FavouritesContextProvider>

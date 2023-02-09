@@ -4,7 +4,6 @@ import { List } from "react-native-paper";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Text } from "../../../components/typography/text.commponent";
 import { ScrollView, View } from "react-native";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import styled from "styled-components";
 import { Schedule } from "../../account/components/login.styles";
 

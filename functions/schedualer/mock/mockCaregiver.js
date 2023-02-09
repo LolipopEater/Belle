@@ -1,0 +1,25 @@
+module.exports = [
+  {
+    isActive: true,
+    UID: "1VisN0EdIhXYyb7eaF4azsT7rCc2",
+    About: "w var lajorim bs etc",
+    interval: 60,
+    working_hours: [
+      "0900-1800",
+      "0900-1800",
+      "0900-1800",
+      "0900-1800",
+      "0900-1800",
+      "0900-1200",
+      "null",
+    ],
+  },
+  [
+    {
+      customer: "li1NHK1kcLQrHVoCwC5FkT890Ag1",
+      Comment: "Good Soup",
+      type: "Hair",
+      date: { _seconds: 1677049200, _nanoseconds: 386000000 },
+    },
+  ],
+];

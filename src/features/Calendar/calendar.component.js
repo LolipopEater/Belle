@@ -1,47 +1,36 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { Calendar } from "react-native-calendars";
 import styled from "styled-components";
 const CalendarView = styled.View``;
 
-export const ScheduleCalendar = ({ placeId, update, select }) => {
+export const ScheduleCalendar = ({
+  workingDays,
+  update,
+  select,
+  markedDates,
+}) => {
   const [selected, setSelected] = useState(undefined);
   const [today, setToday] = useState("");
-  const [show, setShow] = useState(false);
-  const [timeSelected, setTimeSelected] = useState(undefined);
 
-  const getselected = () => {
-    if (selected === undefined) {
-      return undefined;
-    }
-    return { selected: { selected: true } };
-  };
-
-  const dateString = "January 31, 2023 at 11:00:00 AM UTC+2";
-  const date = new Date(dateString);
   const onSelect = (day) => {
     if (day === today) {
       return;
     }
+    const test = new Date(day.dateString);
 
-    setSelected(day.dateString);
-    setShow(!show);
-    select(date);
-    // console.log(
-    //   selected +
-    //     "  " +
-    //     placeId +
-    //     "  Today is =  " +
-    //     getCurrentDate() +
-    //     " isShow? = " +
-    //     show +
-    //     "   date:  " +
-    //     date.getDay()
-    // );
+    setSelected(day.dateString); //set selcted day on this comp
+    select(day); //send day selected to father Component
   };
 
-  useEffect(() => {
-    setToday(getCurrentDate());
-  }, [selected]);
+  // useEffect(() => {
+  //   getselected(workingDays);
+  //   // console.log(selected);
+  // }, []);
+  // useEffect(() => {
+  //   setToday(getCurrentDate());
+  //   getselected(workingDays);
+  //   // console.log(selected);
+  // }, [selected]);
 
   const getCurrentDate = () => {
     var date = new Date().getDate();
@@ -57,7 +46,7 @@ export const ScheduleCalendar = ({ placeId, update, select }) => {
       (date <= 9 ? "0" + date : date)
     ); //format: y-m-d;
   };
-
+  useEffect(() => {}, []);
   return (
     <>
       <CalendarView>
@@ -67,7 +56,7 @@ export const ScheduleCalendar = ({ placeId, update, select }) => {
           theme={{
             textSectionTitleDisabledColor: "#d9e1e8",
           }}
-          markedDates={{}}
+          markedDates={markedDates}
           onDayPress={(day) => onSelect(day)}
         ></Calendar>
       </CalendarView>
