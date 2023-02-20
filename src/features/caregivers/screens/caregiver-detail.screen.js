@@ -19,9 +19,7 @@ export const CareGiverDetailScreen = ({ route, navigation }) => {
   const { lunch, setLunch } = useState(null);
   const { dinner, setDinner } = useState(null);
   const { CareGiver } = route.params;
-  const item = () => {
-    console.log(CareGiver);
-  };
+  const item = () => {};
   return (
     <SafeArea>
       <ScrollView>

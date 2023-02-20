@@ -10,12 +10,13 @@ export const ScheduleCalendar = ({
   markedDates,
 }) => {
   const [selected, setSelected] = useState(undefined);
-  const [today, setToday] = useState("");
+  const [today, setToday] = useState(new Date());
 
   const onSelect = (day) => {
     if (day === today) {
       return;
     }
+
     const test = new Date(day.dateString);
 
     setSelected(day.dateString); //set selcted day on this comp

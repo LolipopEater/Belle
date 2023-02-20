@@ -1,10 +1,17 @@
-import { getAuth } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  inMemoryPersistence,
+  onAuthStateChanged,
+} from "firebase/auth";
+import "firebase/auth";
+import firebase from "firebase/app";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   loginRequest,
   registerRequest,
   logOut,
-  onAuthChange,
+  auth,
 } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
@@ -14,7 +21,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
-  getAuth().onAuthStateChanged((usr) => {
+  auth.onAuthStateChanged((usr) => {
     if (usr) {
       setUser(usr);
       setIsLoading(false);

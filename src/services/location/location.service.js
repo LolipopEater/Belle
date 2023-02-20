@@ -5,7 +5,6 @@ export const locationRequest = (searchTerm) => {
   // get the Json information of the current city
   return fetch(`${host}/geocode?city=${searchTerm}&mock=${isMock}`).then(
     (res) => {
-      console.log(res);
       return res.json();
     }
   );

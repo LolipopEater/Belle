@@ -9,7 +9,7 @@ import { SchedulerContext } from "../../../services/schedualer/scheduler.context
 
 export const CareGiverScheduleScreen = ({ route, navigation }) => {
   const [selected, setSelected] = useState(new Date());
-  const [startTime, setStartTime] = useState(undefined);
+  const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(undefined);
   const [timeSelected, setTimeSelected] = useState(undefined);
 
@@ -22,6 +22,7 @@ export const CareGiverScheduleScreen = ({ route, navigation }) => {
   const { info } = route.params;
 
   useEffect(() => {
+    console.log(schedulaerInfo.working_hours);
     //intitialize Context with current schedular
     schedulaerInfo.changeID(info.placeId);
   }, [route]);
@@ -31,8 +32,10 @@ export const CareGiverScheduleScreen = ({ route, navigation }) => {
     //const workingHours = working_hours[day.getDay()];
 
     const start = new Date(day.dateString);
+
     schedulaerInfo.changeDate(start, info.placeId);
-    const workingHours = schedulaerInfo.working_hours[start.getDay()];
+
+    const workingHours = schedulaerInfo.working_hours[start.getDay()]; //get the working hours of the chosen day to render timeframes
 
     start.setHours(
       parseInt(workingHours.substring(0, 2)),
@@ -66,6 +69,7 @@ export const CareGiverScheduleScreen = ({ route, navigation }) => {
           endTime={endTime}
           interval={60}
           setTimeSelected={setTimeSelected}
+          appointments={schedulaerInfo.appointments}
         />
       </ScrollView>
       <Back title="Register" onPress={onBack} icon="keyboard-backspace">

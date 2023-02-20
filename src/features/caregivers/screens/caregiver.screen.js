@@ -91,6 +91,7 @@ export const CareGiversScreen = ({ navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("CareGiverDetail", {
+                    CareGiverId: item.id,
                     CareGiver: item,
                     navigation: navigation,
                   })

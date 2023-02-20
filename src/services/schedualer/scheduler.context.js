@@ -20,7 +20,7 @@ export const SchedulerContextProvider = ({ children }) => {
   };
 
   const onDateChange = (date, placeId) => {
-    const month = date.toLocaleString("default", { month: "short" });
+    const month = date.getMonth() + 1;
     const year = date.getFullYear().toString().slice(-2);
     const formattedMonth = `${month}-${year}`;
     const formattedDay = date.getDate().toString().padStart(2, "0");

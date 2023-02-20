@@ -19,7 +19,19 @@ module.exports = [
       customer: "li1NHK1kcLQrHVoCwC5FkT890Ag1",
       Comment: "Good Soup",
       type: "Hair",
-      date: { _seconds: 1677049200, _nanoseconds: 386000000 },
+      date: { _seconds: 1677135600, _nanoseconds: 0 },
+    },
+    {
+      customer: "li1NHK1kcLQrHVoCwC5FkT890Ag1",
+      Comment: "Good Soup",
+      type: "Hair",
+      date: { _seconds: 1677142800, _nanoseconds: 0 },
+    },
+    {
+      customer: "li1NHK1kcLQrHVoCwC5FkT890Ag1",
+      Comment: "Good Soup",
+      type: "Hair",
+      date: { _seconds: 1677164400, _nanoseconds: 0 },
     },
   ],
 ];

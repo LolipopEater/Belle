@@ -11,10 +11,12 @@ export const calendarRequest = (placeId, month, day) => {
 };
 
 export const calendarTransform = (result) => {
+  // transform and return the values from the JSON response
   //parse the information and extract information from response
   if (result.hasOwnProperty("error")) {
     return result;
   }
+
   const formattedResponse = result;
   const isActive = formattedResponse[0].isActive;
   const About = formattedResponse[0].About;
@@ -41,6 +43,7 @@ const SelectedStyle = {
 };
 
 const getselected = (workingDays) => {
+  //grayout days which are NULL(out of business that day example would be saturday)
   let markedDates = {};
   for (let i = 0; i <= workingDays.length; i++) {
     if (workingDays[i] === "null") {
