@@ -3,6 +3,8 @@ const { geocodeRequests } = require("./geocode");
 const { placesRequest } = require("./places");
 const { getSchedualer } = require("./schedualer");
 const { Client } = require("@googlemaps/google-maps-services-js");
+const scheduleOperation = require("./appointment").scheduleOperation;
+
 const client = new Client({});
 
 exports.getSchedualer = functions.https.onRequest((request, response) => {
@@ -15,3 +17,5 @@ exports.geocode = functions.https.onRequest((request, response) => {
 exports.placesNearBy = functions.https.onRequest((request, response) => {
   placesRequest(request, response, client);
 });
+
+exports.scheduleOperation = scheduleOperation;

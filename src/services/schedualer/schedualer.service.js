@@ -1,11 +1,11 @@
 import camelize from "camelize";
 import { host, isMock } from "../../utils/env";
-
 export const calendarRequest = (placeId, month, day) => {
   // get the Json information of the current city
   return fetch(
     `${host}/getSchedualer?caregiverId=${placeId}&month=${month}&day=${day}&env=${isMock}`
   ).then((res) => {
+    console.log(res);
     return res.json();
   });
 };
@@ -24,8 +24,16 @@ export const calendarTransform = (result) => {
   const working_hours = formattedResponse[0].working_hours;
   const appointments = formattedResponse[1];
   const disabled = getselected(working_hours);
-
-  return { isActive, About, interval, working_hours, appointments, disabled };
+  const types = formattedResponse[0].types;
+  return {
+    isActive,
+    About,
+    interval,
+    working_hours,
+    appointments,
+    disabled,
+    types,
+  };
 };
 
 const grayedOutStyle = {

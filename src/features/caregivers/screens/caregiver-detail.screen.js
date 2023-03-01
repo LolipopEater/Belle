@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CareGiverInfoCard } from "../components/caregiver-info.card";
 import { List } from "react-native-paper";
 import { SafeArea } from "../../../components/utility/safe-area.component";
@@ -6,6 +6,8 @@ import { Text } from "../../../components/typography/text.commponent";
 import { ScrollView, View } from "react-native";
 import styled from "styled-components";
 import { Schedule } from "../../account/components/login.styles";
+import { LogBox } from "react-native";
+import { SchedulerContext } from "../../../services/schedualer/scheduler.context";
 
 const SchedlueWrap = styled.View`
   margin-top: 45px;
@@ -15,10 +17,13 @@ const SchedlueWrap = styled.View`
 `;
 
 export const CareGiverDetailScreen = ({ route, navigation }) => {
-  const { breakfest, setBreakFest } = useState(null);
-  const { lunch, setLunch } = useState(null);
-  const { dinner, setDinner } = useState(null);
   const { CareGiver } = route.params;
+  const useParams = useContext(SchedulerContext);
+
+  useEffect(() => {
+    useParams.changeID(CareGiver.placeId);
+  }, []);
+
   const item = () => {};
   return (
     <SafeArea>
@@ -79,9 +84,6 @@ export const CareGiverDetailScreen = ({ route, navigation }) => {
             <Text>Schedule</Text>
           </Schedule>
         </SchedlueWrap>
-        {/* <CalenderView>
-          <Calendar />
-        </CalenderView> */}
       </ScrollView>
     </SafeArea>
   );

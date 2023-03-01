@@ -1,7 +1,6 @@
 const liveHost = "https://us-central1-mealstogo-362f3.cloudfunctions.net";
 const localHost =
-  "https://ccf3-77-125-117-19.eu.ngrok.io/mealstogo-362f3/us-central1";
+  "https://337a-77-125-117-19.eu.ngrok.io/mealstogo-362f3/us-central1";
 
-export const isDevelopment = process.env.NODE_ENV === "development";
 export const isMock = true;
-export const host = isDevelopment ? localHost : liveHost;
+export const host = isMock ? localHost : liveHost;

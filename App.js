@@ -9,6 +9,7 @@ import {
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { Navigation } from "./src/infrastructure/navigation";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+import "react-native-gesture-handler";
 
 export default function App() {
   const [loading, setLoading] = useState(true);

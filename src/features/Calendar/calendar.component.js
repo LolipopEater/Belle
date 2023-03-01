@@ -52,7 +52,7 @@ export const ScheduleCalendar = ({
     <>
       <CalendarView>
         <Calendar
-          minDate={today} //today's date
+          minDate={today.toDateString()} //today's date
           firstDay={0} //do not show last month show 0 days from last month
           theme={{
             textSectionTitleDisabledColor: "#d9e1e8",

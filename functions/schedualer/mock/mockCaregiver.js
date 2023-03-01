@@ -3,7 +3,7 @@ module.exports = [
     isActive: true,
     UID: "1VisN0EdIhXYyb7eaF4azsT7rCc2",
     About: "w var lajorim bs etc",
-    interval: 60,
+    interval: 20,
     working_hours: [
       "0900-1800",
       "0900-1800",
@@ -13,6 +13,7 @@ module.exports = [
       "0900-1200",
       "null",
     ],
+    types: ["Hair", "Nails", "Laser"],
   },
   [
     {

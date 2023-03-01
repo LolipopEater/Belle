@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "../../components/typography/text.commponent";
-
+import { SchedulerContext } from "../../services/schedualer/scheduler.context";
 import {
   TimeSlotButton,
   TimeSlotButtonChosen,
@@ -11,18 +11,22 @@ import {
 export const TimeSlotButtons = ({
   startTime,
   endTime,
-  interval,
   setTimeSelected,
   appointments,
 }) => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [chosen, setChosen] = useState(null);
   const [taken, setTaken] = useState(new Set());
-
+  const { interval } = useContext(SchedulerContext);
   const onClick = (val) => {
-    setChosen(val);
-    setTimeSelected(val);
-    console.log(taken);
+    const timeString = val; // example string in "HH:MM" format
+    const [hourString, minuteString] = timeString.split(":"); // split the string into two parts
+    const hour = parseInt(hourString, 10); // convert the hour string to a number
+    const minute = parseInt(minuteString, 10); // convert the minute string to a number
+    const date = new Date(startTime.toDateString()); // create a new Date object with the current date and time
+    date.setHours(hour, minute); // set the hours and minutes using the parsed values
+    setChosen(val); //set chosen date so color will change
+    setTimeSelected(date); //return date to main Schdule Screen for continiuse use.
   };
 
   const generateTimeSlots = () => {
@@ -43,6 +47,7 @@ export const TimeSlotButtons = ({
       } else {
         slots.push(startTime.toLocaleTimeString().substring(0, 5));
       }
+
       startTime.setMinutes(startTime.getMinutes() + interval);
     }
     setTimeSlots(slots);

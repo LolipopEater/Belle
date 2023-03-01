@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FlatList, Pressable, TouchableOpacity } from "react-native";
 import { CareGiverInfoCard } from "../components/caregiver-info.card";
 import styled from "styled-components/native";
@@ -14,6 +14,13 @@ import { LocationContext } from "../../../services/location/location.context";
 import { RecommendedBar } from "../../recommended/recomended.component";
 import { rgba } from "polished";
 import { Text } from "../../../components/typography/text.commponent";
+import { Dimensions } from "react-native";
+import { LogBox } from "react-native";
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+]);
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 const Activity = styled(ActivityIndicator)`
   flex: 1;
   align-items: center;
@@ -41,10 +48,11 @@ const ErrorV = styled.View`
   z-index: 3;
 `;
 const TransIOS = styled.View`
-  background: ${rgba("#F1F1F1", 0.8)};
+  background: ${rgba("#F1F1F1", 0.7)};
   position: absolute;
   margin-top: 40px;
   z-index: 4;
+  width: ${windowWidth * 1}px; // set width to 50% of screen width
 `;
 export const CareGiversScreen = ({ navigation }) => {
   const { error: locationError } = useContext(LocationContext);
@@ -52,6 +60,7 @@ export const CareGiversScreen = ({ navigation }) => {
     useContext(CareGiversContext);
   const [isToggled, setIsToggled] = useState(false);
   const { favourites } = useContext(FavouritesContext);
+
   const hasError = locationError || error;
   const Wrap = Platform.OS === "android" ? TransAndroid : TransIOS;
   const onPress = () => {
@@ -91,7 +100,6 @@ export const CareGiversScreen = ({ navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("CareGiverDetail", {
-                    CareGiverId: item.id,
                     CareGiver: item,
                     navigation: navigation,
                   })

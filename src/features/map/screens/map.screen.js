@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { LocationContext } from "../../../services/location/location.context";
 import { CareGiversContext } from "../../../services/caregivers/caregiver.context";
 import { MapCallout } from "../components/map-callout.component";
+import { Marker } from "react-native-maps";
+import { Callout } from "react-native-maps";
 const Map = styled(MapView)`
 height:100%
 width:100%`;
@@ -39,7 +41,7 @@ export const MapScreen = ({ navigation }) => {
       >
         {CareGivers.map((CareGiver) => {
           return (
-            <MapView.Marker
+            <Marker
               key={CareGiver.name}
               title={CareGiver.name}
               coordinate={{
@@ -47,7 +49,7 @@ export const MapScreen = ({ navigation }) => {
                 longitude: CareGiver.geometry.location.lng,
               }}
             >
-              <MapView.Callout
+              <Callout
                 onPress={() =>
                   navigation.navigate("CareGiverDetail", {
                     CareGiver,
@@ -55,8 +57,8 @@ export const MapScreen = ({ navigation }) => {
                 }
               >
                 <MapCallout CareGiver={CareGiver} />
-              </MapView.Callout>
-            </MapView.Marker>
+              </Callout>
+            </Marker>
           );
         })}
       </Map>
