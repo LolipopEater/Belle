@@ -4,6 +4,7 @@ const { placesRequest } = require("./places");
 const { getSchedualer } = require("./schedualer");
 const { Client } = require("@googlemaps/google-maps-services-js");
 const scheduleOperation = require("./appointment").scheduleOperation;
+const register = require("./register").register;
 
 const client = new Client({});
 
@@ -19,3 +20,4 @@ exports.placesNearBy = functions.https.onRequest((request, response) => {
 });
 
 exports.scheduleOperation = scheduleOperation;
+exports.register = register;

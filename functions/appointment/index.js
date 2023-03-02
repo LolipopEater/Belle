@@ -10,18 +10,26 @@ exports.scheduleOperation = functions.https.onCall((data, context) => {
   const timestamp = data.data.TimeStamp;
   const type = data.data.type;
 
+  //extract path from timstamp
   const date = new Date(timestamp);
+  const month = date.getMonth() + 1; // get the month value (zero-based index, so add 1)
   const day = date.getDate();
   const year = date.getFullYear().toString().substr(-2); // get the last two digits of the year
-  const formattedDate = `${day}-${year}`;
+  const formattedDate = `${month}-${year}`;
+  //----------------------------------------------------------------------//
+
+  //getFirebase Path//
+  //code here
+
+  //----------------------------------------------------------------------//
 
   const appointmentData = {
     customer: customer,
     date: timestamp,
     type: type,
     Comment: "",
-    day: day,
-    year: formattedDate,
+    approved: false,
+    cancelled: false,
   };
 
   return new Promise((resolve) => {
