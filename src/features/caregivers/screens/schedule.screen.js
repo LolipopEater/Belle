@@ -13,8 +13,8 @@ import {
   PickerContainer,
 } from "./schedule.style.js";
 import { Text } from "../../../components/typography/text.commponent";
-import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import { LogBox } from "react-native";
+import { Alert } from "react-native";
 LogBox.ignoreLogs(["RNReactNativeHapticFeedback is not available"]);
 export const CareGiverScheduleScreen = ({ route, navigation }) => {
   const [selected, setSelected] = useState(new Date());
@@ -23,7 +23,7 @@ export const CareGiverScheduleScreen = ({ route, navigation }) => {
   const [timeSelected, setTimeSelected] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("send");
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedType, setSelectedType] = useState("Select Type");
 
   const Auth = useContext(AuthenticationContext); //get user setting
   const schedulaerInfo = useContext(SchedulerContext); // fetch Data From Context
@@ -31,7 +31,39 @@ export const CareGiverScheduleScreen = ({ route, navigation }) => {
     navigation.goBack();
   };
 
+  const showError = (errorMessage) => {
+    Alert.alert(
+      "Error",
+      errorMessage,
+      [
+        {
+          text: "OK",
+          onPress: () => console.log("OK pressed"),
+          style: "cancel",
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+  const ScheduleSuccess = (errorMessage) => {
+    Alert.alert(
+      "Status",
+      errorMessage,
+      [
+        {
+          text: "OK",
+          onPress: () => onBack(),
+          style: "cancel",
+        },
+      ],
+      { cancelable: false }
+    );
+  };
   const onSchedule = () => {
+    if (selectedType === "Select Type") {
+      showError("You have not selected type!");
+      return;
+    }
     setLoading(true);
     setTimeout(() => {
       schedulaerInfo.schedule(
@@ -39,10 +71,11 @@ export const CareGiverScheduleScreen = ({ route, navigation }) => {
         info.placeId,
         timeSelected.getTime(),
         selectedType,
-        setStatus
+        setStatus,
+        ScheduleSuccess
       );
       setLoading(false);
-    }, 4000);
+    }, 1000);
   };
   const { info } = route.params;
 
@@ -56,7 +89,6 @@ export const CareGiverScheduleScreen = ({ route, navigation }) => {
     //const workingHours = working_hours[day.getDay()];
 
     const start = new Date(day.dateString);
-
     schedulaerInfo.changeDate(start, info.placeId);
 
     const workingHours = schedulaerInfo.working_hours[start.getDay()]; //get the working hours of the chosen day to render timeframes
@@ -106,6 +138,11 @@ export const CareGiverScheduleScreen = ({ route, navigation }) => {
           }}
           enableHapticFeedback={true}
         >
+          <Picker.Item
+            key={"Select Type"}
+            label={"Select Type"}
+            value={"Select Type"}
+          />
           {schedulaerInfo.types.map((type) => (
             <Picker.Item key={type.id + 1} label={type} value={type} />
           ))}
