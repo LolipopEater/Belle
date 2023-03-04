@@ -19,6 +19,7 @@ exports.register = functions.https.onCall((data, context) => {
     age: age,
     sex: sex,
     Email: email,
+    role: "Customer",
   };
 
   const customerId = uid; // Use the uid as the customer ID

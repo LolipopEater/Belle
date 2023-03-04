@@ -8,16 +8,11 @@ import {
   Container,
 } from "./appointment.style";
 
-export const TimeSlotButtons = ({
-  startTime,
-  endTime,
-  setTimeSelected,
-  appointments,
-}) => {
+export const TimeSlotButtons = ({ startTime, endTime, setTimeSelected }) => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [chosen, setChosen] = useState(null);
   const [taken, setTaken] = useState(new Set());
-  const { interval } = useContext(SchedulerContext);
+  const { interval, appointments } = useContext(SchedulerContext);
   const onClick = (val) => {
     const timeString = val; // example string in "HH:MM" format
     const [hourString, minuteString] = timeString.split(":"); // split the string into two parts
@@ -55,7 +50,11 @@ export const TimeSlotButtons = ({
 
   useEffect(() => {
     generateTimeSlots();
-  }, [startTime, endTime, interval]); //will be changed , when changing a day a new set of appointments will arrive.
+  }, [appointments]); //will be changed , when changing a day a new set of appointments will arrive.
+
+  useEffect(() => {
+    generateTimeSlots();
+  }, []);
 
   return (
     <Container>

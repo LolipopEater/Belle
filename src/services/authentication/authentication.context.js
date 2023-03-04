@@ -51,7 +51,6 @@ export const AuthenticationContextProvider = ({ children }) => {
         return registerUserInfo(email, name, sex, age, uid);
       })
       .then((result) => {
-        console.log(result);
         setIsLoading(false);
       })
       .catch((e) => {

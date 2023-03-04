@@ -20,18 +20,8 @@ export const ScheduleCalendar = ({
     const test = new Date(day.dateString);
 
     setSelected(day.dateString); //set selcted day on this comp
-    select(day); //send day selected to father Component
+    select(day); //send day selected to father Componen
   };
-
-  // useEffect(() => {
-  //   getselected(workingDays);
-  //   // console.log(selected);
-  // }, []);
-  // useEffect(() => {
-  //   setToday(getCurrentDate());
-  //   getselected(workingDays);
-  //   // console.log(selected);
-  // }, [selected]);
 
   const getCurrentDate = () => {
     var date = new Date().getDate();
@@ -47,7 +37,7 @@ export const ScheduleCalendar = ({
       (date <= 9 ? "0" + date : date)
     ); //format: y-m-d;
   };
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
   return (
     <>
       <CalendarView>

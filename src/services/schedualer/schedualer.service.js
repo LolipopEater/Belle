@@ -50,7 +50,7 @@ const SelectedStyle = {
   selectedColor: "blue",
 };
 
-const getselected = (workingDays) => {
+export const getselected = (workingDays, date) => {
   //grayout days which are NULL(out of business that day example would be saturday)
   let markedDates = {};
   for (let i = 0; i <= workingDays.length; i++) {
