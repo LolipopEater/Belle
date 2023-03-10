@@ -8,16 +8,56 @@ import {
   httpsCallable,
   useEmulator,
 } from "firebase/functions";
+import { Success } from "../../../components/alert/alert";
+import { ProfileTransform } from "./customers.service";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 export const CustomersContext = createContext();
-
 export const CustomerContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
   const [customers, setCustomers] = useState([]);
   const [keyWord, setKeyWord] = useState("");
   const [customersFiltered, setCustomersFiltered] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [profile, setProfile] = useState([]);
+  const [description, setDescription] = useState([]);
+  const [notes, setNotes] = useState([]);
+  const [chosenAppointment, setChosen] = useState(undefined);
 
+  const updateSummarry = (sum) => {
+    if (chosenAppointment === undefined) {
+      Success("Please Choose appointmet!!");
+      return;
+    }
+    setIsLoading(true);
+    const functions = getFunctions(getApp());
+    if (isMock) {
+      connectFunctionsEmulator(functions, "192.168.0.146", 5000);
+    }
+    const setSumm = httpsCallable(functions, "setSummary");
+    const request = {
+      data: {
+        id: chosenAppointment.customer,
+        appointmentId: chosenAppointment.id,
+        summary: sum,
+      },
+    };
+    setSumm(request)
+      .then((result) => {
+        setCustomers(result.data.data);
+        setCustomersFiltered(result.data.data);
+        setIsLoading(false);
+        Success("Updated Succesfully!");
+        setDescription(sum);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error(error);
+        setError(error);
+      });
+  };
   const getCustomers = () => {
+    setIsLoading(true);
     const functions = getFunctions(getApp());
     if (isMock) {
       connectFunctionsEmulator(functions, "192.168.0.146", 5000);
@@ -32,9 +72,38 @@ export const CustomerContextProvider = ({ children }) => {
       .then((result) => {
         setCustomers(result.data.data);
         setCustomersFiltered(result.data.data);
+        setIsLoading(false);
       })
       .catch((error) => {
+        setIsLoading(false);
         console.error(error);
+        setError(error);
+      });
+  };
+
+  const getProfileData = (UID, place) => {
+    setIsLoading(true);
+    const functions = getFunctions(getApp());
+    if (isMock) {
+      connectFunctionsEmulator(functions, "192.168.0.146", 5000);
+    }
+    const getProfile = httpsCallable(functions, "getProfile");
+    const request = {
+      data: {
+        id: UID,
+        place: place,
+      },
+    };
+    getProfile(request)
+      .then(ProfileTransform)
+      .then((result) => {
+        setProfile(result);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error(error);
+        setError(error);
       });
   };
 
@@ -58,6 +127,14 @@ export const CustomerContextProvider = ({ children }) => {
         getCustomers,
         customersFiltered,
         onSearch,
+        isLoading,
+        getProfileData,
+        profile,
+        setDescription,
+        description,
+        updateSummarry,
+        chosenAppointment,
+        setChosen,
       }}
     >
       {children}

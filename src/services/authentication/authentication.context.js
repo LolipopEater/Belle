@@ -32,6 +32,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     if (usr) {
       setUser(usr);
       getChoice();
+      console.log(partnerRole + "  On Auth Change Check");
       setIsLoading(false);
     } else {
       setIsLoading(false);
@@ -116,19 +117,36 @@ export const AuthenticationContextProvider = ({ children }) => {
         setPartnerRole(false);
       });
   };
-
+  const isValidPhoneNumber = (phoneNumber) => {
+    const pattern = /^[0-9]{10}$/; // 10 digits only
+    return pattern.test(phoneNumber);
+  };
   //try to render main
-  const onRegister = (email, password, reapeatedPassword, name, sex, age) => {
+  const onRegister = (
+    email,
+    password,
+    reapeatedPassword,
+    name,
+    sex,
+    age,
+    phone
+  ) => {
     setIsLoading(true);
+    if (!isValidPhoneNumber(phone)) {
+      setIsLoading(false);
+      setError("Invalid Phone Number");
+      return;
+    }
     if (reapeatedPassword !== password) {
       setError("Passwords Do not Match");
+      setIsLoading(false);
       return;
     }
     registerRequest(email, password)
       .then((userCredential) => {
         const uid = userCredential.user.uid;
         setUser(userCredential.user);
-        return registerUserInfo(email, name, sex, age, uid);
+        return registerUserInfo(email, name, sex, age, uid, phone);
       })
       .then((result) => {
         setIsLoading(false);

@@ -105,7 +105,7 @@ exports.partnerCalendarRequest = functions.https.onCall(
 
       subCollectionData.push(appointments);
 
-      return { data: subCollectionData };
+      return { data: subCollectionData, placeID: placeID };
     } catch (error) {
       return { error: error.message };
     }

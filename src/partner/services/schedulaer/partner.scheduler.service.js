@@ -8,7 +8,7 @@ export const calendarTransform = (result) => {
   if (result.hasOwnProperty("error")) {
     return result;
   }
-
+  const place = result.data.placeID;
   const formattedResponse = result.data.data;
   const isActive = formattedResponse[0].isActive;
   const About = formattedResponse[0].About;
@@ -25,6 +25,7 @@ export const calendarTransform = (result) => {
     appointments,
     disabled,
     types,
+    place,
   };
 };
 

@@ -30,6 +30,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
   const [markedDates, setMarkedDates] = useState({});
   const [dateobj, setDateobj] = useState(now);
   const [responseFlag, setResponseFlag] = useState(false);
+  const [storeID, setStore] = useState("");
 
   const confirmAppointment = (appointment) => {
     const functions = getFunctions(getApp());
@@ -139,6 +140,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
           appointments,
           disabled,
           types,
+          place,
         }) => {
           setError(null);
           selectedDay(disabled);
@@ -148,6 +150,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
           setAppointmets(appointments);
           setIsActive(isActive);
           setTypes(types);
+          setStore(place);
         }
       )
       .catch((err) => {
@@ -214,6 +217,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         placeId,
         cancelAppoinment,
         confirmAppointment,
+        storeID,
       }}
     >
       {children}

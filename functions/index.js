@@ -13,6 +13,8 @@ const partnerCalendarRequest = require("./schedualer").partnerCalendarRequest;
 const requireRolebyEmail = require("./util").requireRoleByEmail;
 const approveOperation = require("./appointment").approveOperation;
 const getPartnerCustomer = require("./caregiver").getPartnerCustomer;
+const getProfile = require("./caregiver").getProfile;
+const setSummary = require("./caregiver").setSummary;
 const client = new Client({});
 
 exports.getSchedualer = functions.https.onRequest((request, response) => {
@@ -41,3 +43,5 @@ exports.requireRolebyEmail = requireRolebyEmail;
 exports.partnerCalendarRequest = partnerCalendarRequest;
 exports.approveOperation = approveOperation;
 exports.getPartnerCustomer = getPartnerCustomer;
+exports.getProfile = getProfile;
+exports.setSummary = setSummary;

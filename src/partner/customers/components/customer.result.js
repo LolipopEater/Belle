@@ -45,7 +45,7 @@ export const CustomerList = ({ onPress }) => {
       <FlatList
         data={customersFiltered}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.customer}
       />
     </CustomerListContainer>
   );

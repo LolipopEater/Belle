@@ -35,7 +35,6 @@ export const PartnerAppointmentList = ({ navigation }) => {
     const status = item.status;
     const cancelled = item.cancelled;
     const approved = item.approved;
-    console.log(item);
     const statusLabel = cancelled
       ? "Cancelled"
       : approved

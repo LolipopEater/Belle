@@ -35,7 +35,7 @@ export const auth = initializeAuth(firebaseApp, {
 export const registerRequest = (email, password, reapeatedPassword) =>
   createUserWithEmailAndPassword(auth, email, password);
 
-export const registerUserInfo = (email, name, age, sex, uid) => {
+export const registerUserInfo = (email, name, age, sex, uid, phone) => {
   return new Promise((resolve, reject) => {
     const functions = getFunctions(getApp());
     connectFunctionsEmulator(functions, "192.168.0.146", 5000);
@@ -46,6 +46,7 @@ export const registerUserInfo = (email, name, age, sex, uid) => {
       age: age,
       sex: sex,
       email: email,
+      phone: phone,
     };
     console.log("TEST PROMISE");
     register(request)

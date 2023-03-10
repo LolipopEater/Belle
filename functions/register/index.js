@@ -12,6 +12,7 @@ exports.register = functions.https.onCall((data, context) => {
   const sex = data.sex;
   const name = data.name;
   const email = data.email;
+  const phone = data.phone;
 
   const appointmentData = {
     customer: name,
@@ -20,6 +21,7 @@ exports.register = functions.https.onCall((data, context) => {
     sex: sex,
     Email: email,
     role: "Customer",
+    phone: phone,
   };
 
   const customerId = uid; // Use the uid as the customer ID
