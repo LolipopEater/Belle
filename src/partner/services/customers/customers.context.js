@@ -14,6 +14,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 export const CustomersContext = createContext();
 export const CustomerContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
+
   const [customers, setCustomers] = useState([]);
   const [keyWord, setKeyWord] = useState("");
   const [customersFiltered, setCustomersFiltered] = useState([]);
@@ -24,6 +25,33 @@ export const CustomerContextProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
   const [chosenAppointment, setChosen] = useState(undefined);
 
+  const updateNote = (sum, storeID, customer) => {
+    setIsLoading(true);
+    const functions = getFunctions(getApp());
+    if (isMock) {
+      connectFunctionsEmulator(functions, "192.168.0.146", 5000);
+    }
+    const setSumm = httpsCallable(functions, "setNotes");
+    const request = {
+      data: {
+        id: customer.uid,
+        PlaceID: storeID,
+        summary: sum,
+      },
+    };
+
+    setSumm(request)
+      .then((result) => {
+        setNotes(sum);
+        setIsLoading(false);
+        Success("Updated Succesfully!");
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error(error);
+        setError(error);
+      });
+  };
   const updateSummarry = (sum) => {
     if (chosenAppointment === undefined) {
       Success("Please Choose appointmet!!");
@@ -94,10 +122,12 @@ export const CustomerContextProvider = ({ children }) => {
         place: place,
       },
     };
+
     getProfile(request)
       .then(ProfileTransform)
-      .then((result) => {
-        setProfile(result);
+      .then(({ appointmentsWithDates, Notes }) => {
+        setProfile(appointmentsWithDates);
+        setNotes(Notes);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -135,6 +165,8 @@ export const CustomerContextProvider = ({ children }) => {
         updateSummarry,
         chosenAppointment,
         setChosen,
+        notes,
+        updateNote,
       }}
     >
       {children}

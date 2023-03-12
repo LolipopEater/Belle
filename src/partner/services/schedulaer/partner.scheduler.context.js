@@ -31,6 +31,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
   const [dateobj, setDateobj] = useState(now);
   const [responseFlag, setResponseFlag] = useState(false);
   const [storeID, setStore] = useState("");
+  const [storeName, setStoreName] = useState("");
 
   const confirmAppointment = (appointment) => {
     const functions = getFunctions(getApp());
@@ -55,6 +56,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         console.error(error);
       });
   };
+
   const onCalanderChange = (Id) => {
     const month = dateobj.getMonth() + 1;
     const year = dateobj.getFullYear().toString().slice(-2);
@@ -68,26 +70,28 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
 
   const schedule = (
     CustomerID,
-    CareGiverID,
     TimeStamp,
     type,
     setStatus,
-    ScheduleSuccess
+    ScheduleSuccess,
+    name
   ) => {
     const functions = getFunctions(getApp());
     if (isMock) {
       connectFunctionsEmulator(functions, "192.168.0.146", 5000);
     }
+
     const scheduleAppointment = httpsCallable(functions, "scheduleOperation");
     const request = {
       data: {
         CustomerID: CustomerID,
-        CareGiverID: CareGiverID,
+        CareGiverID: storeID,
         TimeStamp: TimeStamp,
         type: type,
+        name: name,
       },
     };
-    console.log(type);
+    console.log(request);
     scheduleAppointment(request)
       .then((result) => {
         const Messege = "Scheduled Successfully";
@@ -109,6 +113,16 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
     setMonth(formattedMonth);
     setDay(formattedDay);
     setPlaceId(placeId);
+  };
+  const onScheduleDateChange = (date) => {
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear().toString().slice(-2);
+    const formattedMonth = `${month}-${year}`;
+    const formattedDay = date.getDate().toString().padStart(2, "0");
+
+    setDateobj(date);
+    setMonth(formattedMonth);
+    setDay(formattedDay);
   };
 
   useEffect(() => {
@@ -141,6 +155,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
           disabled,
           types,
           place,
+          name,
         }) => {
           setError(null);
           selectedDay(disabled);
@@ -151,6 +166,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
           setIsActive(isActive);
           setTypes(types);
           setStore(place);
+          setStoreName(name);
         }
       )
       .catch((err) => {
@@ -166,7 +182,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         ...disabled,
         [dateString]: {
           disableTouchEvent: false,
-          selected: true,
+          selected: false,
           marked: true,
           selectedColor: "#75b2dd",
         },
@@ -218,6 +234,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         cancelAppoinment,
         confirmAppointment,
         storeID,
+        onScheduleDateChange,
       }}
     >
       {children}

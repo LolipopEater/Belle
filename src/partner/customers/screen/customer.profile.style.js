@@ -1,5 +1,28 @@
 import styled from "styled-components/native";
+import { Text } from "../../../components/typography/text.commponent";
+import { MaterialIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
+export const ScheduleButton = styled.TouchableOpacity`
+  position: absolute;
+  bottom: 10px;
+  align-self: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: #2196f3;
+  justify-content: center;
+  align-items: center;
+  shadow-color: #000;
+  shadow-offset: { width: 0, height: 2 };
+  shadow-opacity: 0.25;
+  shadow-radius: 3.84px;
+  elevation: 5;
+`;
 
+export const ScheduleButtonText = styled.Text`
+  font-size: 16px;
+  color: white;
+`;
 export const Container = styled.View`
   flex: 1;
   justify-content: flex-start;

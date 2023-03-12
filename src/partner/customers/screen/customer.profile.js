@@ -12,10 +12,12 @@ import {
   DetailsContainer,
   DetailsText,
   ContainerAppointmentsSummary,
+  ScheduleButton,
+  ScheduleButtonText,
 } from "./customer.profile.style";
 import { PartnerSchedulerContext } from "../../services/schedulaer/partner.scheduler.context";
 import { CustomersContext } from "../../services/customers/customers.context";
-export const CustomerProfileScreen = ({ route }) => {
+export const CustomerProfileScreen = ({ navigation, route }) => {
   const { storeID } = useContext(PartnerSchedulerContext);
   const { setDescription, setChosen } = useContext(CustomersContext);
   const customer = route.params.customer;
@@ -25,6 +27,12 @@ export const CustomerProfileScreen = ({ route }) => {
     setDescription("Choose an appointment to review Description");
   }, []);
 
+  const handleNav = () => {
+    navigation.navigate("Scheduler", {
+      customer: customer,
+      placeId: storeID,
+    });
+  };
   return (
     <Container>
       <AvatarContainer>
@@ -55,8 +63,12 @@ export const CustomerProfileScreen = ({ route }) => {
         <Spacer position="top" size="large" />
         <Spacer position="top" size="large" />
         <Text>important Notes!:</Text>
-        <Notes></Notes>
+        <Notes customer={customer}></Notes>
       </ContainerAppointmentsSummary>
+
+      <ScheduleButton onPress={() => handleNav()}>
+        <ScheduleButtonText>Schedule</ScheduleButtonText>
+      </ScheduleButton>
     </Container>
   );
 };

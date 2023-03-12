@@ -32,7 +32,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     if (usr) {
       setUser(usr);
       getChoice();
-      console.log(partnerRole + "  On Auth Change Check");
+      console.log(partnerRole + "  On Auth Change Check userRole->" + status);
       setIsLoading(false);
     } else {
       setIsLoading(false);
@@ -106,16 +106,18 @@ export const AuthenticationContextProvider = ({ children }) => {
     }
     checkUserAccessByEmail(email);
     setIsLoading(true);
-    loginRequest(email, password)
-      .then((u) => {
-        setUser(u);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-        setError(e.toString());
-        setPartnerRole(false);
-      });
+    setTimeout(() => {
+      loginRequest(email, password)
+        .then((u) => {
+          setUser(u);
+          setIsLoading(false);
+        })
+        .catch((e) => {
+          setIsLoading(false);
+          setError(e.toString());
+          setPartnerRole(false);
+        });
+    }, 1000);
   };
   const isValidPhoneNumber = (phoneNumber) => {
     const pattern = /^[0-9]{10}$/; // 10 digits only

@@ -11,47 +11,11 @@ import styled from "styled-components/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Success } from "../../../components/alert/alert";
 import { CustomersContext } from "../../services/customers/customers.context";
-const Container = styled.View`
-  flex: 0.2;
-  width: 100%;
-  padding-horizontal: 20px;
-  background-color: #f9f9f9;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 40px;
-  elevation: 5;
-  margin-top: 20px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const LastSummaryText = styled.Text`
-  font-size: 16px;
-  margin-bottom: 100px;
-`;
-
-const SummaryInput = styled.TextInput`
-  border-radius: 5px;
-  height: 100px;
-  margin-bottom: 10px;
-  flex: 1;
-  ${Platform.select({
-    ios: `
-      padding: 45px;
-    `,
-    android: `
-      padding: 25px;
-    `,
-    default: `
-      padding: 40px;
-    `,
-  })}
-`;
-
-const UpdateButton = styled.TouchableOpacity`
-  right: 10px;
-  top: 10px;
-`;
+import {
+  Container,
+  SummaryInput,
+  UpdateButton,
+} from "./style/summarry.component.style";
 
 export const Summary = () => {
   const [summary, setSummary] = useState("");

@@ -80,9 +80,13 @@ export const LoginScreen = ({ navigation }) => {
           </Submit>
         )}
         <Spacer size="large"></Spacer>
-        <SubmitPartner title=" Login As Partner" onPress={onSubmitPartner}>
-          Login As Partner
-        </SubmitPartner>
+        {isLoading ? (
+          <ActivityIndicator size="small" color="#0000ff" />
+        ) : (
+          <SubmitPartner title=" Login As Partner" onPress={onSubmitPartner}>
+            Login As Partner
+          </SubmitPartner>
+        )}
       </LoginContainer>
       <Spacer size="large" />
       <Back title="Register" onPress={onBack} icon="keyboard-backspace">

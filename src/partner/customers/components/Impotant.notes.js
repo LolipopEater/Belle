@@ -1,68 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { TextInput, View, Text, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styled from "styled-components/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { CustomersContext } from "../../services/customers/customers.context";
+import { PartnerSchedulerContext } from "../../services/schedulaer/partner.scheduler.context";
 import { Success } from "../../../components/alert/alert";
-const Container = styled.View`
-  flex: 0.2;
-  width: 100%;
-  padding-horizontal: 20px;
-  background-color: #f9f9f9;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 40px;
-  elevation: 5;
-  margin-top: 20px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
+import {
+  Container,
+  SummaryInput,
+  UpdateButton,
+} from "./style/important.notes.styles";
 
-const LastSummaryText = styled.Text`
-  font-size: 16px;
-  margin-bottom: 100px;
-`;
-
-const SummaryInput = styled.TextInput`
-  border-radius: 5px;
-  padding: 50px;
-  height: 100px;
-  margin-bottom: 10px;
-  flex: 1;
-`;
-
-const UpdateButton = styled.TouchableOpacity`
-  right: 10px;
-  top: 10px;
-`;
-
-export const Notes = ({ appointmentId }) => {
+export const Notes = ({ customer }) => {
   const [summary, setSummary] = useState("");
-
+  const { storeID } = useContext(PartnerSchedulerContext);
+  const { notes, updateNote } = useContext(CustomersContext);
   useEffect(() => {
-    async function loadSummary() {
-      try {
-        const storedSummary = await AsyncStorage.getItem(
-          `summary:${appointmentId}`
-        );
-        if (storedSummary !== null) {
-          setSummary(storedSummary);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-
-    loadSummary();
-  }, [appointmentId]);
+    setSummary(notes);
+  }, [notes]);
 
   const handleUpdate = async () => {
-    try {
-      await AsyncStorage.setItem(`summary:${appointmentId}`, summary);
-      Success("Updated succefuly");
-    } catch (e) {
-      console.log(e);
-    }
+    updateNote(summary, storeID, customer);
   };
 
   return (
@@ -73,6 +32,7 @@ export const Notes = ({ appointmentId }) => {
         onChangeText={setSummary}
         blurOnSubmit={true}
       />
+
       <UpdateButton onPress={handleUpdate}>
         <Ionicons name={"pencil"} size={25} color={"black"} />
       </UpdateButton>

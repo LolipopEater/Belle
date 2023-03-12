@@ -16,7 +16,7 @@ const getPartnerCustomer = require("./caregiver").getPartnerCustomer;
 const getProfile = require("./caregiver").getProfile;
 const setSummary = require("./caregiver").setSummary;
 const client = new Client({});
-
+const setNotes = require("./caregiver").setNotes;
 exports.getSchedualer = functions.https.onRequest((request, response) => {
   getSchedualer(request, response, client);
 });
@@ -45,3 +45,4 @@ exports.approveOperation = approveOperation;
 exports.getPartnerCustomer = getPartnerCustomer;
 exports.getProfile = getProfile;
 exports.setSummary = setSummary;
+exports.setNotes = setNotes;

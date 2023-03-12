@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/stack";
 import { CustomersList } from "../customers/screen/customer.list.screen";
 import { CustomerProfileScreen } from "../customers/screen/customer.profile";
-
+import { CareGiverScheduleScreen } from "../customers/screen/customer.schedule.screen";
 const CustomerList = createStackNavigator();
 
 export const CustomerListNav = ({ route, navigation }) => {
@@ -26,6 +26,10 @@ export const CustomerListNav = ({ route, navigation }) => {
       <CustomerList.Screen
         name="CustomerProfile"
         component={CustomerProfileScreen}
+      />
+      <CustomerList.Screen
+        name="Scheduler"
+        component={CareGiverScheduleScreen}
       />
     </CustomerList.Navigator>
   );

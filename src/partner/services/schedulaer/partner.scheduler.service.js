@@ -10,6 +10,7 @@ export const calendarTransform = (result) => {
   }
   const place = result.data.placeID;
   const formattedResponse = result.data.data;
+  const name = formattedResponse[0].Name;
   const isActive = formattedResponse[0].isActive;
   const About = formattedResponse[0].About;
   const interval = formattedResponse[0].interval;
@@ -17,6 +18,7 @@ export const calendarTransform = (result) => {
   const appointments = formattedResponse[1];
   const disabled = getselected(working_hours);
   const types = formattedResponse[0].types;
+  console.log("Name :: " + name);
   return {
     isActive,
     About,
@@ -26,6 +28,7 @@ export const calendarTransform = (result) => {
     disabled,
     types,
     place,
+    name,
   };
 };
 
