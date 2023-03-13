@@ -18,6 +18,7 @@ const setSummary = require("./caregiver").setSummary;
 const client = new Client({});
 const setNotes = require("./caregiver").setNotes;
 const updateHours = require("./caregiver").updateHours;
+const updateTypes = require("./caregiver").updateTypes;
 exports.getSchedualer = functions.https.onRequest((request, response) => {
   getSchedualer(request, response, client);
 });
@@ -30,15 +31,10 @@ exports.placesNearBy = functions.https.onRequest((request, response) => {
 });
 
 exports.scheduleOperation = scheduleOperation;
-
 exports.register = register;
-
 exports.getUserAppointments = getAppointment;
-
 exports.cancelOperation = cancelOperation;
-
 exports.getFeatured = getFeatured;
-
 exports.requireRole = requireRole;
 exports.requireRolebyEmail = requireRolebyEmail;
 exports.partnerCalendarRequest = partnerCalendarRequest;
@@ -48,3 +44,4 @@ exports.getProfile = getProfile;
 exports.setSummary = setSummary;
 exports.setNotes = setNotes;
 exports.updateHours = updateHours;
+exports.updateTypes = updateTypes;

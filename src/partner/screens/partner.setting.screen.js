@@ -14,6 +14,9 @@ export const SettingsMainScreen = ({ navigation, route }) => {
   const Hours = () => {
     navigation.navigate("Hours settings");
   };
+  const Services = () => {
+    navigation.navigate("Services");
+  };
   const SettingItem = styled(List.Item)`
     padding: ${(props) => props.theme.space[3]};
   `;
@@ -41,6 +44,14 @@ export const SettingsMainScreen = ({ navigation, route }) => {
           title="Hours Settings"
           left={(props) => <List.Icon {...props} color="black" icon="clock" />}
           onPress={() => Hours()}
+        />
+        <SettingItem
+          style={{ padding: 16 }}
+          title="Services"
+          left={(props) => (
+            <List.Icon {...props} color="black" icon="information-outline" />
+          )}
+          onPress={() => Services()}
         />
       </List.Section>
     </SafeArea>

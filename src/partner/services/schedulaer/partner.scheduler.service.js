@@ -8,8 +8,10 @@ export const calendarTransform = (result) => {
   if (result.hasOwnProperty("error")) {
     return result;
   }
+  console.log(result);
   const place = result.data.placeID;
   const formattedResponse = result.data.data;
+  const prices = formattedResponse[0].prices;
   const name = formattedResponse[0].Name;
   const isActive = formattedResponse[0].isActive;
   const About = formattedResponse[0].About;
@@ -29,6 +31,7 @@ export const calendarTransform = (result) => {
     types,
     place,
     name,
+    prices,
   };
 };
 const grayedOutStyle = {
@@ -99,7 +102,6 @@ export const parseWorkingHours = (workingHours) => {
       });
       continue;
     }
-
     const startTime = workingHoursString.slice(0, 4);
     const endTime = workingHoursString.slice(5, 9);
     if (workingHours[i] === "null") {

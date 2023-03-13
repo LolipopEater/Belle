@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/stack";
 import { SettingsMainScreen } from "../screens/partner.setting.screen";
 import { HoursScreen } from "../settings/hours.component";
+import { SettingTypesScreen } from "../settings/types.component";
 const SettingStack = createStackNavigator();
 export const PartnerSettingsNavigator = ({ route, navigation }) => {
   return (
@@ -26,6 +27,11 @@ export const PartnerSettingsNavigator = ({ route, navigation }) => {
       <SettingStack.Screen
         name="Hours settings"
         component={HoursScreen}
+        navigation={navigation}
+      />
+      <SettingStack.Screen
+        name="Services"
+        component={SettingTypesScreen}
         navigation={navigation}
       />
     </SettingStack.Navigator>

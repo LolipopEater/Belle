@@ -141,3 +141,20 @@ exports.updateHours = functions.https.onCall(async (data, context) => {
     return { error: error.message };
   }
 });
+
+exports.updateTypes = functions.https.onCall(async (data, context) => {
+  const types = data.data.types; //get types
+  const prices = data.data.prices; //get types
+  const place = data.data.PlaceID; //get id
+  try {
+    const appointmentDocRef = admin
+      .firestore()
+      .collection("caregivers")
+      .doc(place);
+
+    await appointmentDocRef.update({ types: types, prices: prices });
+    return { success: "success!!!!" };
+  } catch (error) {
+    return { error: error.message };
+  }
+});

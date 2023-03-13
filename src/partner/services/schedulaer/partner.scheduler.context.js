@@ -33,6 +33,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
   const [responseFlag, setResponseFlag] = useState(false);
   const [storeID, setStore] = useState("");
   const [storeName, setStoreName] = useState("");
+  const [prices, setPrices] = useState([]);
 
   const confirmAppointment = (appointment) => {
     const functions = getFunctions(getApp());
@@ -157,6 +158,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
           types,
           place,
           name,
+          prices,
         }) => {
           setError(null);
           selectedDay(disabled);
@@ -168,6 +170,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
           setTypes(types);
           setStore(place);
           setStoreName(name);
+          setPrices(prices);
         }
       )
       .catch((err) => {
@@ -240,6 +243,34 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         console.error(error);
       });
   };
+  const updateTypes = (services, Prices) => {
+    const functions = getFunctions(getApp());
+
+    if (isMock) {
+      connectFunctionsEmulator(functions, "192.168.0.146", 5000);
+    }
+
+    const update = httpsCallable(functions, "updateTypes");
+    const request = {
+      data: {
+        types: services,
+        prices: Prices,
+        PlaceID: storeID,
+      },
+    };
+
+    console.log(request);
+    update(request)
+      .then((result) => {
+        const Messege = "Added Service Complete!";
+        setTypes(services);
+        setPrices(Prices);
+        Success(Messege);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <PartnerSchedulerContext.Provider
@@ -260,6 +291,8 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         storeID,
         onScheduleDateChange,
         updateWorkinghours,
+        prices,
+        updateTypes,
       }}
     >
       {children}
