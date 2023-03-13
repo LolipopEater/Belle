@@ -33,6 +33,7 @@ export const CustomerProfileScreen = ({ navigation, route }) => {
       placeId: storeID,
     });
   };
+
   return (
     <Container>
       <AvatarContainer>

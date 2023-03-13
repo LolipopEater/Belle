@@ -1,9 +1,10 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { calendarTransform, getselected } from "./partner.scheduler.service";
-
+import { reformWorkingHours } from "./partner.scheduler.service";
 import { isMock } from "../../../utils/env";
 import { getApp } from "firebase/app";
+import { Success } from "../../../components/alert/alert";
 import {
   getFunctions,
   connectFunctionsEmulator,
@@ -190,7 +191,30 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
       setMarkedDates(updatedMarkedDates);
     }
   };
+  const updateWorkinghours = (New) => {
+    const reformed = reformWorkingHours(New);
+    const functions = getFunctions(getApp());
+    if (isMock) {
+      connectFunctionsEmulator(functions, "192.168.0.146", 5000);
+    }
 
+    const updateHours = httpsCallable(functions, "updateHours");
+    const request = {
+      data: {
+        new: reformed,
+        PlaceID: storeID,
+      },
+    };
+    console.log(request);
+    updateHours(request)
+      .then((result) => {
+        const Messege = "Changed Successfully";
+        Success(Messege);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   const cancelAppoinment = (CareGiverID, CustomerID, TimeStamp, id) => {
     const functions = getFunctions(getApp());
     if (isMock) {
@@ -235,6 +259,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         confirmAppointment,
         storeID,
         onScheduleDateChange,
+        updateWorkinghours,
       }}
     >
       {children}

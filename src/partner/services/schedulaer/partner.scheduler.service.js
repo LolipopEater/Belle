@@ -31,7 +31,6 @@ export const calendarTransform = (result) => {
     name,
   };
 };
-
 const grayedOutStyle = {
   //style config for the grayed out days.
   disableTouchEvent: true,
@@ -62,4 +61,66 @@ export const getselected = (workingDays, date) => {
     }
   }
   return markedDates;
+};
+
+export const reformWorkingHours = (days) => {
+  return days.map((day) => {
+    if (day.disabled) {
+      return null;
+    }
+
+    const startTime = day.startTime.replace(":", "");
+    const endTime = day.endTime.replace(":", "");
+    return `${startTime}-${endTime}`;
+  });
+};
+export const parseWorkingHours = (workingHours) => {
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const result = [];
+
+  for (let i = 0; i < daysOfWeek.length; i++) {
+    const workingHoursString = workingHours[i];
+    if (!workingHoursString) {
+      result.push({
+        name: daysOfWeek[i],
+        startTime: "08:00",
+        endTime: "18:00",
+        disabled: true,
+        isDatePickerVisibleStart: false,
+        isDatePickerVisibleEnd: false,
+      });
+      continue;
+    }
+
+    const startTime = workingHoursString.slice(0, 4);
+    const endTime = workingHoursString.slice(5, 9);
+    if (workingHours[i] === "null") {
+      result.push({
+        name: daysOfWeek[i],
+        startTime: `08:00`,
+        endTime: `16:00`,
+        disabled: true,
+        isDatePickerVisibleStart: false,
+        isDatePickerVisibleEnd: false,
+      });
+    } else
+      result.push({
+        name: daysOfWeek[i],
+        startTime: `${startTime.slice(0, 2)}:${startTime.slice(2, 4)}`,
+        endTime: `${endTime.slice(0, 2)}:${endTime.slice(2, 4)}`,
+        disabled: false,
+        isDatePickerVisibleStart: false,
+        isDatePickerVisibleEnd: false,
+      });
+  }
+
+  return result;
 };

@@ -1,5 +1,6 @@
 {
   "expo": {
+    
     "name": "Belle",
     "slug": "Belle",
     "version": "0.0.1",
@@ -10,6 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "userInterfaceStyle": "automatic",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -23,8 +25,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon@3x.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.lolipopeater.Belle"
     }
-    
   }
 }

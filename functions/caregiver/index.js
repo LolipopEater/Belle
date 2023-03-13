@@ -125,3 +125,19 @@ exports.setNotes = functions.https.onCall(async (data, context) => {
     return { error: error.message };
   }
 });
+
+exports.updateHours = functions.https.onCall(async (data, context) => {
+  const Workinghours = data.data.new; //get id
+  const place = data.data.PlaceID; //get id
+  try {
+    const appointmentDocRef = admin
+      .firestore()
+      .collection("caregivers")
+      .doc(place);
+
+    await appointmentDocRef.update({ working_hours: Workinghours });
+    return { success: "success!!!!" };
+  } catch (error) {
+    return { error: error.message };
+  }
+});
