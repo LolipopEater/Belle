@@ -13,7 +13,7 @@ import {
   SubmitPartner,
 } from "../components/login.styles";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, Image, StyleSheet } from "react-native";
 export const LoginScreen = ({ navigation }) => {
   const [userName, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,7 +50,10 @@ export const LoginScreen = ({ navigation }) => {
   return (
     <LoginBackground>
       <LoginCover />
-      <Title>Belle♥</Title>
+      <Image
+        style={styles.logo}
+        source={require("../../../../assets/logo.png")}
+      />
       <LoginContainer>
         <TextField
           label="Email"
@@ -95,3 +98,15 @@ export const LoginScreen = ({ navigation }) => {
     </LoginBackground>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    resizeMode: "contain",
+  },
+});

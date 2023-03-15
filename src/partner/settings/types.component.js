@@ -19,11 +19,13 @@ export const SettingTypesScreen = () => {
   const [Prices, setPrices] = useState([50, 30, 25]);
   const [newService, setNewService] = useState("");
   const [newServicePrice, setNewServicePrice] = useState("");
-  const { types, prices, updateTypes } = useContext(PartnerSchedulerContext);
+  const { types, prices, updateTypes, setResponseFlag } = useContext(
+    PartnerSchedulerContext
+  );
   const handleAddService = () => {
     if (newService.trim() && newServicePrice.trim()) {
       setServices([...services, newService]);
-      setPrices([...Prices, newServicePrice]);
+      setPrices([newServicePrice]);
       setNewService("");
       setNewServicePrice("");
     }

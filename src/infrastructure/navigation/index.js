@@ -11,6 +11,11 @@ export const Navigation = () => {
   );
   const [isLoading, setIsLoading] = useState(false);
 
+  // return (
+  //   <NavigationContainer>
+  //     <PartnerNavigator />
+  //   </NavigationContainer>
+  // );
   if (isAuthenticated) {
     if (status === "partner" && partnerRole) {
       return (

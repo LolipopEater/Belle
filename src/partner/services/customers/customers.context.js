@@ -149,6 +149,11 @@ export const CustomerContextProvider = ({ children }) => {
       setCustomersFiltered(filtered);
     }
   };
+  useEffect(() => {
+    if (customers.length < 1) {
+      getCustomers();
+    }
+  }, []);
   return (
     <CustomersContext.Provider
       value={{

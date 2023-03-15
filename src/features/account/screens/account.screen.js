@@ -1,7 +1,7 @@
 import React from "react";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import LottieView from "lottie-react-native";
-
+import { Image, StyleSheet } from "react-native";
 import {
   AccountBackground,
   AccountCover,
@@ -16,16 +16,11 @@ export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
-      <AnimationWrapper>
-        <LottieView
-          key="animation"
-          autoPlay
-          loop
-          resizeMode="cover"
-          source={require("../../../../assets/watermelon.json")}
-        />
-      </AnimationWrapper>
-      <Title>Belle♥</Title>
+
+      <Image
+        style={styles.logo}
+        source={require("../../../../assets/logo.png")}
+      />
       <AccountContainer>
         <AuthButton
           title="Login"
@@ -48,3 +43,15 @@ export const AccountScreen = ({ navigation }) => {
     </AccountBackground>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    resizeMode: "contain",
+  },
+});

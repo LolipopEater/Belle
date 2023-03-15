@@ -1,42 +1,134 @@
-import React from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
-import { LineChart } from "react-native-chart-kit";
-export const AnalyticsScreen = () => {
-  return (
-    <View>
-      <Text>Bezier Line Chart</Text>
-      <LineChart
-        data={{
-          labels: ["January", "February", "March", "April", "May", "June"],
-          datasets: [
-            {
-              data: [1, 2, 3, 4, 5, 6],
-            },
-          ],
-        }}
-        width={Dimensions.get("window").width} // from react-native
-        height={250}
-        yAxisLabel=""
-        yAxisSuffix=""
-        yAxisInterval={1} // optional, defaults to 1
-        chartConfig={chartConfig}
-        bezier
-        style={{
-          marginVertical: 8,
-          borderRadius: 16,
-        }}
-      />
-    </View>
-  );
-};
+import React, { useContext, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
+import {
+  ProgressChart,
+  PieChart,
+  BarChart,
+  LineChart,
+} from "react-native-chart-kit";
+import { SafeArea } from "../../components/utility/safe-area.component";
+import styled from "styled-components/native";
+import {
+  Container,
+  Title,
+  ScrollViewContent,
+  ChartContainer,
+  ChartBarContainer,
+  ChartTitle,
+  SubText,
+} from "./styles/analytics.style";
+import { PartnerSchedulerContext } from "../services/schedulaer/partner.scheduler.context";
+import { AnalyticsContext } from "../services/analytics/analytics.context.provider";
+import { CustomersContext } from "../services/customers/customers.context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const chartConfig = {
-  backgroundGradientFrom: "#1E2923",
-  backgroundGradientFromOpacity: 0,
-  backgroundGradientTo: "#1E2923",
-  backgroundGradientToOpacity: 0.5,
-  color: (opacity = 1) => `rgba(128, 39, 206, 1, ${opacity})`,
-  strokeWidth: 2, // optional, default 3
-  barPercentage: 0.5,
-  useShadowColorFromDataset: false, // optional
+export const AnalyticsScreen = () => {
+  const {
+    fetchData,
+    Sort,
+    progressData,
+    ageData,
+    appointmentData,
+    incomeByTypeData,
+    isLoading,
+    setIsLoading,
+  } = useContext(AnalyticsContext);
+  const { customers, getCustomers } = useContext(CustomersContext);
+
+  const BarchartConfig = {
+    backgroundGradientFrom: "#000000",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#000000",
+    backgroundGradientToOpacity: 0.5,
+    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false, // optional
+  };
+  const chartConfig = {
+    backgroundColor: "#e26a00",
+    backgroundGradientFrom: "#e26a00",
+    backgroundGradientTo: "#e26a00",
+    decimalPlaces: 2, // optional, defaults to 2dp
+    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    barRadius: 50,
+  };
+
+  const incomeData = {
+    labels: ["5 Mar", "10 Mar", "15 Mar", "20 Mar", "25 Mar"],
+    datasets: [
+      {
+        data: [800, 1200, 1000, 1600, 2000],
+        color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
+        strokeWidth: 2,
+      },
+    ],
+  };
+
+  return (
+    <SafeArea>
+      <Container>
+        <Title>Analytics</Title>
+        <ScrollViewContent>
+          <SubText>Goal Progress this month:</SubText>
+          <ChartContainer>
+            <ProgressChart
+              data={progressData}
+              width={Dimensions.get("window").width}
+              height={250}
+              strokeWidth={10}
+              radius={35}
+              chartConfig={chartConfig}
+              hideLegend={false}
+              center={[0, 50]}
+            />
+          </ChartContainer>
+          <SubText>Customers By Age :</SubText>
+          <ChartContainer>
+            <PieChart
+              data={ageData}
+              width={Dimensions.get("window").width}
+              height={220}
+              chartConfig={chartConfig}
+              accessor={"population"}
+              backgroundColor={"#b9b5b5"}
+              paddingLeft={"15"}
+              center={[25, 5]}
+              absolute
+            />
+          </ChartContainer>
+          <SubText>How Many Appointments by Type this month:</SubText>
+          <ChartBarContainer>
+            <BarChart
+              data={appointmentData}
+              width={Dimensions.get("window").width}
+              height={220}
+              yAxisLabel=""
+              chartConfig={BarchartConfig}
+              verticalLabelRotation={0}
+            />
+          </ChartBarContainer>
+          <SubText>How Much income by Type this month:</SubText>
+          <ChartBarContainer>
+            <BarChart
+              data={incomeByTypeData}
+              width={Dimensions.get("window").width}
+              height={220}
+              yAxisLabel=""
+              chartConfig={BarchartConfig}
+              verticalLabelRotation={0}
+            />
+          </ChartBarContainer>
+        </ScrollViewContent>
+      </Container>
+    </SafeArea>
+  );
 };

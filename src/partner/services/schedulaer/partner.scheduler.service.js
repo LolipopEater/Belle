@@ -8,10 +8,11 @@ export const calendarTransform = (result) => {
   if (result.hasOwnProperty("error")) {
     return result;
   }
-  console.log(result);
+
   const place = result.data.placeID;
   const formattedResponse = result.data.data;
   const prices = formattedResponse[0].prices;
+  const goals = formattedResponse[0].goals;
   const name = formattedResponse[0].Name;
   const isActive = formattedResponse[0].isActive;
   const About = formattedResponse[0].About;
@@ -32,6 +33,7 @@ export const calendarTransform = (result) => {
     place,
     name,
     prices,
+    goals,
   };
 };
 const grayedOutStyle = {

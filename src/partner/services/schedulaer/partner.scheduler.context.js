@@ -23,8 +23,8 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
   const [about, setAbout] = useState("san francisco");
   const [placeId, setPlaceId] = useState("gL7h8xKXDacQe7LA5STaEakZXy93");
   const [interval, setInterval] = useState(60);
-  const [month, setMonth] = useState("1-23");
-  const [day, setDay] = useState("01");
+  const [month, setMonth] = useState(null);
+  const [day, setDay] = useState(null);
   const [appointments, setAppointmets] = useState([]);
   const [types, setTypes] = useState([]);
   const [error, setError] = useState(null);
@@ -34,6 +34,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
   const [storeID, setStore] = useState("");
   const [storeName, setStoreName] = useState("");
   const [prices, setPrices] = useState([]);
+  const [treatmentGoals, setTreatmentGoals] = useState([]);
 
   const confirmAppointment = (appointment) => {
     const functions = getFunctions(getApp());
@@ -57,6 +58,40 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const updateUserGoals = (newGoals) => {
+    const functions = getFunctions(getApp());
+    if (isMock) {
+      connectFunctionsEmulator(functions, "192.168.0.146", 5000);
+    }
+
+    const update = httpsCallable(functions, "updateGoals");
+    const request = {
+      data: {
+        new: newGoals,
+        PlaceID: storeID,
+      },
+    };
+
+    update(request)
+      .then((result) => {
+        const Messege = "Updated Goals Succesfully!!";
+        setTreatmentGoals(newGoals);
+        Success(Messege);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const initializerDate = () => {
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear().toString().slice(-2);
+    const formattedMonth = `${month}-${year}`;
+    const formattedDay = now.getDate().toString().padStart(2, "0");
+    setMonth(formattedMonth);
+    setDay(formattedDay);
   };
 
   const onCalanderChange = (Id) => {
@@ -128,6 +163,9 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (day === null || month === null) {
+      initializerDate();
+    }
     const functions = getFunctions(getApp());
     if (isMock) {
       connectFunctionsEmulator(functions, "192.168.0.146", 5000);
@@ -159,6 +197,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
           place,
           name,
           prices,
+          goals,
         }) => {
           setError(null);
           selectedDay(disabled);
@@ -171,6 +210,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
           setStore(place);
           setStoreName(name);
           setPrices(prices);
+          setTreatmentGoals(goals);
         }
       )
       .catch((err) => {
@@ -249,7 +289,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
     if (isMock) {
       connectFunctionsEmulator(functions, "192.168.0.146", 5000);
     }
-
+    console.log(Prices);
     const update = httpsCallable(functions, "updateTypes");
     const request = {
       data: {
@@ -266,6 +306,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         setTypes(services);
         setPrices(Prices);
         Success(Messege);
+        setResponseFlag(!responseFlag);
       })
       .catch((error) => {
         console.error(error);
@@ -293,6 +334,10 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         updateWorkinghours,
         prices,
         updateTypes,
+        setTreatmentGoals,
+        treatmentGoals,
+        updateUserGoals,
+        month,
       }}
     >
       {children}

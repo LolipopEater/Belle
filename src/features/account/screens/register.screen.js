@@ -12,7 +12,7 @@ import {
 } from "../components/register.styles";
 import { Text } from "../../../components/typography/text.commponent";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { ActivityIndicator, ScrollView } from "react-native";
+import { ActivityIndicator, ScrollView, Image, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import SelectDropdown from "react-native-select-dropdown";
@@ -57,9 +57,10 @@ export const RegisterScreen = ({ navigation }) => {
     <SafeArea>
       <RegisterBackground>
         <RegisterCover />
-
-        <Title>Belle♥</Title>
-        <Text>Wellcome! Please register</Text>
+        <Image
+          style={styles.logo}
+          source={require("../../../../assets/MIni_logo.png")}
+        />
         <RegisterContainer>
           <StyledScrollView>
             <TextField
@@ -139,3 +140,15 @@ export const RegisterScreen = ({ navigation }) => {
     </SafeArea>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    resizeMode: "contain",
+  },
+});

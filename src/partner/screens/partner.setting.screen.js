@@ -17,12 +17,16 @@ export const SettingsMainScreen = ({ navigation, route }) => {
   const Services = () => {
     navigation.navigate("Services");
   };
+  const Goals = () => {
+    navigation.navigate("Goals");
+  };
   const SettingItem = styled(List.Item)`
     padding: ${(props) => props.theme.space[3]};
   `;
   const AvatarContainer = styled.View`
     align-items: center;
   `;
+
   return (
     <SafeArea>
       <AvatarContainer>
@@ -52,6 +56,14 @@ export const SettingsMainScreen = ({ navigation, route }) => {
             <List.Icon {...props} color="black" icon="information-outline" />
           )}
           onPress={() => Services()}
+        />
+        <SettingItem
+          style={{ padding: 16 }}
+          title="Goals"
+          left={(props) => (
+            <List.Icon {...props} color="black" icon="progress-check" />
+          )}
+          onPress={() => Goals()}
         />
       </List.Section>
     </SafeArea>

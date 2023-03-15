@@ -158,3 +158,62 @@ exports.updateTypes = functions.https.onCall(async (data, context) => {
     return { error: error.message };
   }
 });
+exports.updateGoals = functions.https.onCall(async (data, context) => {
+  const goals = data.data.new; //get types
+  const place = data.data.PlaceID; //get id
+  try {
+    const appointmentDocRef = admin
+      .firestore()
+      .collection("caregivers")
+      .doc(place);
+
+    await appointmentDocRef.update({ goals: goals });
+    return { success: "success!!!!" };
+  } catch (error) {
+    return { error: error.message };
+  }
+});
+
+exports.fetchAnalyticsData = functions.https.onCall(async (data, context) => {
+  const month = data.data.month; //get month
+  const place = data.data.PlaceID; //get id
+
+  try {
+    const appointmentsArray = [];
+    const customersArray = [];
+    const monthRef = admin
+      .firestore()
+      .collection("caregivers")
+      .doc(place)
+      .collection(place + "-p")
+      .doc(month);
+
+    // Get all subcollections of the monthRef collection
+    const subcollections = await monthRef.listCollections();
+
+    // Loop through each subcollection and retrieve all the documents
+    for (const subcollection of subcollections) {
+      const querySnapshot = await subcollection.get();
+      console.log("Call!");
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach((doc) => {
+          appointmentsArray.push({ ...doc.data(), id: doc.id });
+        });
+      } else {
+        console.log(
+          "No appointments found in subcollection:",
+          subcollection.id
+        );
+      }
+    }
+
+    // You can use the appointmentsArray here for further processing
+
+    return {
+      success: "success!!!!",
+      appointments: appointmentsArray,
+    };
+  } catch (error) {
+    return { error: error.message };
+  }
+});
