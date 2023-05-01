@@ -48,13 +48,10 @@ export const AnalyticsContextProvider = ({ children }) => {
         month: month,
       },
     };
-
     fetchAnalyticsData(request)
       .then((result) => {
         DataToCharts(result, month, types, treatmentGoals);
-      })
-      .then(({ goals }) => {
-        setProgressData(goals);
+        Sort(result);
       })
       .catch((error) => {
         setIsLoading(false);
@@ -63,6 +60,7 @@ export const AnalyticsContextProvider = ({ children }) => {
   };
 
   const Sort = (data) => {
+    // console.log(data);
     const reformedGoals = goalsChart(data, types, treatmentGoals);
     setProgressData(reformedGoals);
     const agedat = ageChart(customers);
@@ -73,7 +71,7 @@ export const AnalyticsContextProvider = ({ children }) => {
     setIncomeByTypeData(incomeType);
   };
   useEffect(() => {
-    console.log(incomeByTypeData);
+    // console.log(incomeByTypeData);
     const getAppointments = async () => {
       // Retrieve appointments data from AsyncStorage
       setIsLoading(true);

@@ -111,3 +111,19 @@ exports.partnerCalendarRequest = functions.https.onCall(
     }
   }
 );
+
+exports.checkIfInProggram = functions.https.onCall(async (data, context) => {
+  const place = data.data.CareGiverID;
+
+  try {
+    const customerRef = admin.firestore().collection("caregivers").doc(place);
+    const customerDoc = await customerRef.get();
+    if (customerDoc.exists && customerDoc.data().isActive) {
+      return { response: true };
+    } else {
+      return { response: false };
+    }
+  } catch (error) {
+    return { error: error.message };
+  }
+});

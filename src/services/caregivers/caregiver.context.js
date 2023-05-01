@@ -32,6 +32,7 @@ export const CareGiversContextProvider = ({ children }) => {
       .then((results) => {
         setIsLoading(false);
         setCareGivers(results);
+        console.log(results);
       })
       .catch((err) => {
         setIsLoading(false);

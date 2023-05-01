@@ -16,7 +16,6 @@ export const calendarTransform = (result) => {
   if (result.hasOwnProperty("error")) {
     return result;
   }
-  console.log(result);
   const formattedResponse = result;
   const isActive = formattedResponse[0].isActive;
   const About = formattedResponse[0].About;

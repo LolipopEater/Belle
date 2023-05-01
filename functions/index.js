@@ -21,7 +21,7 @@ const updateHours = require("./caregiver").updateHours;
 const updateTypes = require("./caregiver").updateTypes;
 const updateGoals = require("./caregiver").updateGoals;
 const fetchAnalyticsData = require("./caregiver").fetchAnalyticsData;
-
+const checkIfInProggram = require("./schedualer").checkIfInProggram;
 exports.getSchedualer = functions.https.onRequest((request, response) => {
   getSchedualer(request, response, client);
 });
@@ -50,3 +50,4 @@ exports.updateHours = updateHours;
 exports.updateTypes = updateTypes;
 exports.updateGoals = updateGoals;
 exports.fetchAnalyticsData = fetchAnalyticsData;
+exports.checkIfInProggram = checkIfInProggram;

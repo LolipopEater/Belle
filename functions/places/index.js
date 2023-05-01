@@ -15,8 +15,8 @@ const addGoogleImage = (restaurant) => {
         restaurant.photos[0].photo_reference
       }&key=${functions.config().google.key}`,
     ];
+    return restaurant; // Add this line
   }
-  return restaurant;
 };
 
 module.exports.placesRequest = (request, response, client) => {
@@ -40,8 +40,11 @@ module.exports.placesRequest = (request, response, client) => {
       timeout: 1000,
     })
     .then((res) => {
-      res.data.results = res.data.results.map(addmockImage); //changed to addmockImage since api calls costs money suupose to be addGoogleImage
-      return response.json(res.data.results);
+      console.log("sadgfkjhagfkjhgafkjahgfjkhg TESTTTTTTT!");
+      const modifiedResults = res.data.results.map((p) => {
+        return addGoogleImage(p);
+      });
+      return response.json(modifiedResults);
     })
     .catch((e) => {
       response.status(400);

@@ -101,8 +101,7 @@ const storeData = async (response, suffix) => {
 
 export const DataToCharts = (response, month, types, treatmentGoals) => {
   storeData(response, month);
-  const goals = goalsChart(response, types, treatmentGoals);
-  return { goals };
+  return { response };
 };
 
 export const appointmentChart = (Raw, types) => {

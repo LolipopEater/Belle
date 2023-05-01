@@ -26,20 +26,46 @@ export const SchedulerContextProvider = ({ children }) => {
   const [month, setMonth] = useState("1-23");
   const [day, setDay] = useState("01");
   const [appointments, setAppointmets] = useState([]);
-  const [types, setTypes] = useState([]);
+  const [types, setTypes] = useState(["Not A User Yet"]);
   const [error, setError] = useState(null);
   const [markedDates, setMarkedDates] = useState({});
   const [dateobj, setDateobj] = useState(new Date());
+  const [isInProggram, setIsInProggram] = useState(false);
 
   const onCalanderChange = (Id) => {
     const month = dateobj.getMonth() + 1;
     const year = dateobj.getFullYear().toString().slice(-2);
     const formattedMonth = `${month}-${year}`;
-    const formattedDay = dateobj.getDate().toString().padStart(2, "0");
+    // const formattedDay = dateobj.getDate().toString().padStart(2, "0");
+    const formattedDay = dateobj.getDate().toString();
     setMonth(formattedMonth);
     setDay(formattedDay);
     setPlaceId(placeId);
     setPlaceId(Id);
+  };
+
+  const checkIfInProggram = (id) => {
+    const functions = getFunctions(getApp());
+    connectFunctionsEmulator(functions, "192.168.0.146", 5000);
+
+    const Check = httpsCallable(functions, "checkIfInProggram");
+    const request = {
+      data: {
+        CareGiverID: id,
+      },
+    };
+
+    Check(request)
+      .then((result) => {
+        if (result.data.response) {
+          setIsInProggram(true);
+        } else {
+          setIsInProggram(false);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const schedule = (
@@ -80,7 +106,8 @@ export const SchedulerContextProvider = ({ children }) => {
     const month = date.getMonth() + 1;
     const year = date.getFullYear().toString().slice(-2);
     const formattedMonth = `${month}-${year}`;
-    const formattedDay = date.getDate().toString().padStart(2, "0");
+    // const formattedDay = date.getDate().toString().padStart(2, "0");
+    const formattedDay = dateobj.getDate().toString();
 
     setDateobj(date);
     setMonth(formattedMonth);
@@ -171,6 +198,8 @@ export const SchedulerContextProvider = ({ children }) => {
         types,
         placeId,
         cancelAppoinment,
+        checkIfInProggram,
+        isInProggram,
       }}
     >
       {children}

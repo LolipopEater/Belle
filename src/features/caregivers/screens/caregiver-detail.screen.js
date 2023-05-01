@@ -21,7 +21,13 @@ export const CareGiverDetailScreen = ({ route, navigation }) => {
   const useParams = useContext(SchedulerContext);
 
   useEffect(() => {
-    useParams.changeID(CareGiver.placeId);
+    useParams.checkIfInProggram(CareGiver.placeId);
+
+    setTimeout(() => {
+      if (useParams.isInProggram) {
+        useParams.changeID(CareGiver.placeId);
+      }
+    }, 2000);
   }, []);
 
   const item = () => {};
@@ -29,25 +35,27 @@ export const CareGiverDetailScreen = ({ route, navigation }) => {
     <SafeArea>
       <ScrollView>
         <CareGiverInfoCard CareGivers={CareGiver} />
-        <List.Section title="Information">
-          <List.Accordion
-            title="About me"
-            left={(props) => <List.Icon {...props} icon="eye" />}
-          >
-            <View>
-              <Text variant="body">TEST</Text>
-              <Text variant="caption">{useParams.about}</Text>
-            </View>
-          </List.Accordion>
-          <List.Accordion
-            title="Services"
-            left={(props) => <List.Icon {...props} icon="exclamation" />}
-          >
-            {useParams.types.map((item) => (
-              <List.Item key={item} title={item} />
-            ))}
-          </List.Accordion>
-        </List.Section>
+        {useParams.isInProggram && (
+          <List.Section title="Information">
+            <List.Accordion
+              title="About me"
+              left={(props) => <List.Icon {...props} icon="eye" />}
+            >
+              <View>
+                <Text variant="body">{CareGiver.name}</Text>
+                <Text variant="caption">{useParams.about}</Text>
+              </View>
+            </List.Accordion>
+            <List.Accordion
+              title="Services"
+              left={(props) => <List.Icon {...props} icon="exclamation" />}
+            >
+              {useParams.types.map((item) => (
+                <List.Item key={item} title={item} />
+              ))}
+            </List.Accordion>
+          </List.Section>
+        )}
         <SchedlueWrap>
           <Schedule
             title="Schedule"

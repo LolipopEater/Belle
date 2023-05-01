@@ -128,7 +128,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         name: name,
       },
     };
-    console.log(request);
+    console.log("TEST");
     scheduleAppointment(request)
       .then((result) => {
         const Messege = "Scheduled Successfully";
@@ -144,18 +144,21 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
     const month = date.getMonth() + 1;
     const year = date.getFullYear().toString().slice(-2);
     const formattedMonth = `${month}-${year}`;
-    const formattedDay = date.getDate().toString().padStart(2, "0");
-
+    // const formattedDay = date.getDate().toString().padStart(2, "0");
+    const formattedDay = date.getDate().toString();
+    console.log("TESTTTTTT FORMATED DAY");
     setDateobj(date);
     setMonth(formattedMonth);
     setDay(formattedDay);
     setPlaceId(placeId);
   };
+
   const onScheduleDateChange = (date) => {
     const month = date.getMonth() + 1;
     const year = date.getFullYear().toString().slice(-2);
     const formattedMonth = `${month}-${year}`;
-    const formattedDay = date.getDate().toString().padStart(2, "0");
+    // const formattedDay = date.getDate().toString().padStart(2, "0");
+    const formattedDay = date.getDate().toString();
 
     setDateobj(date);
     setMonth(formattedMonth);
@@ -182,7 +185,8 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         isMock: isMock,
       },
     };
-
+    // console.log(request);
+    // return;
     partnerCalendarRequest(request)
       .then(calendarTransform)
       .then(
@@ -248,7 +252,7 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
         PlaceID: storeID,
       },
     };
-    console.log(request);
+    // console.log(request);
     updateHours(request)
       .then((result) => {
         const Messege = "Changed Successfully";
@@ -289,7 +293,6 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
     if (isMock) {
       connectFunctionsEmulator(functions, "192.168.0.146", 5000);
     }
-    console.log(Prices);
     const update = httpsCallable(functions, "updateTypes");
     const request = {
       data: {
@@ -299,7 +302,6 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
       },
     };
 
-    console.log(request);
     update(request)
       .then((result) => {
         const Messege = "Added Service Complete!";

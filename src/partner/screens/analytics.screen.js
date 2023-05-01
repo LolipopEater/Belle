@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from "react";
+import Icon from "react-native-vector-icons/Ionicons";
+import { TouchableOpacity } from "react-native";
 import {
   View,
   Text,
@@ -28,7 +30,6 @@ import { PartnerSchedulerContext } from "../services/schedulaer/partner.schedule
 import { AnalyticsContext } from "../services/analytics/analytics.context.provider";
 import { CustomersContext } from "../services/customers/customers.context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 export const AnalyticsScreen = () => {
   const {
     fetchData,
@@ -40,6 +41,10 @@ export const AnalyticsScreen = () => {
     isLoading,
     setIsLoading,
   } = useContext(AnalyticsContext);
+  const handleRefresh = async () => {
+    await fetchData();
+    console.log("REFRESH ANALYTICS");
+  };
   const { customers, getCustomers } = useContext(CustomersContext);
 
   const BarchartConfig = {
@@ -51,6 +56,7 @@ export const AnalyticsScreen = () => {
     strokeWidth: 2, // optional, default 3
     barPercentage: 0.5,
     useShadowColorFromDataset: false, // optional
+    yAxisInterval: 1,
   };
   const chartConfig = {
     backgroundColor: "#e26a00",
@@ -72,11 +78,24 @@ export const AnalyticsScreen = () => {
       },
     ],
   };
-
+  const TitleContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  `;
   return (
     <SafeArea>
       <Container>
-        <Title>Analytics</Title>
+        <TitleContainer>
+          <Title>
+            <TouchableOpacity onPress={handleRefresh}>
+              <Icon name="refresh" size={20} color="#333" />
+            </TouchableOpacity>
+            Analytics
+          </Title>
+        </TitleContainer>
+
         <ScrollViewContent>
           <SubText>Goal Progress this month:</SubText>
           <ChartContainer>
