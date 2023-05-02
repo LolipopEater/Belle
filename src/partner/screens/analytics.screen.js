@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native";
+
 import {
   View,
   Text,
@@ -87,66 +88,72 @@ export const AnalyticsScreen = () => {
   return (
     <SafeArea>
       <Container>
-        <TitleContainer>
-          <Title>
-            <TouchableOpacity onPress={handleRefresh}>
-              <Icon name="refresh" size={20} color="#333" />
-            </TouchableOpacity>
-            Analytics
-          </Title>
-        </TitleContainer>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <>
+            <TitleContainer>
+              <Title>
+                <TouchableOpacity onPress={handleRefresh}>
+                  <Icon name="refresh" size={20} color="#333" />
+                </TouchableOpacity>
+                Analytics
+              </Title>
+            </TitleContainer>
 
-        <ScrollViewContent>
-          <SubText>Goal Progress this month:</SubText>
-          <ChartContainer>
-            <ProgressChart
-              data={progressData}
-              width={Dimensions.get("window").width}
-              height={250}
-              strokeWidth={10}
-              radius={35}
-              chartConfig={chartConfig}
-              hideLegend={false}
-              center={[0, 50]}
-            />
-          </ChartContainer>
-          <SubText>Customers By Age :</SubText>
-          <ChartContainer>
-            <PieChart
-              data={ageData}
-              width={Dimensions.get("window").width}
-              height={220}
-              chartConfig={chartConfig}
-              accessor={"population"}
-              backgroundColor={"#b9b5b5"}
-              paddingLeft={"15"}
-              center={[25, 5]}
-              absolute
-            />
-          </ChartContainer>
-          <SubText>How Many Appointments by Type this month:</SubText>
-          <ChartBarContainer>
-            <BarChart
-              data={appointmentData}
-              width={Dimensions.get("window").width}
-              height={220}
-              yAxisLabel=""
-              chartConfig={BarchartConfig}
-              verticalLabelRotation={0}
-            />
-          </ChartBarContainer>
-          <SubText>How Much income by Type this month:</SubText>
-          <ChartBarContainer>
-            <BarChart
-              data={incomeByTypeData}
-              width={Dimensions.get("window").width}
-              height={220}
-              yAxisLabel=""
-              chartConfig={BarchartConfig}
-              verticalLabelRotation={0}
-            />
-          </ChartBarContainer>
-        </ScrollViewContent>
+            <ScrollViewContent>
+              <SubText>Goal Progress this month:</SubText>
+              <ChartContainer>
+                <ProgressChart
+                  data={progressData}
+                  width={Dimensions.get("window").width}
+                  height={250}
+                  strokeWidth={10}
+                  radius={35}
+                  chartConfig={chartConfig}
+                  hideLegend={false}
+                  center={[0, 50]}
+                />
+              </ChartContainer>
+              <SubText>Customers By Age :</SubText>
+              <ChartContainer>
+                <PieChart
+                  data={ageData}
+                  width={Dimensions.get("window").width}
+                  height={220}
+                  chartConfig={chartConfig}
+                  accessor={"population"}
+                  backgroundColor={"#b9b5b5"}
+                  paddingLeft={"15"}
+                  center={[25, 5]}
+                  absolute
+                />
+              </ChartContainer>
+              <SubText>How Many Appointments by Type this month:</SubText>
+              <ChartBarContainer>
+                <BarChart
+                  data={appointmentData}
+                  width={Dimensions.get("window").width}
+                  height={220}
+                  yAxisLabel=""
+                  chartConfig={BarchartConfig}
+                  verticalLabelRotation={0}
+                />
+              </ChartBarContainer>
+              <SubText>How Much income by Type this month:</SubText>
+              <ChartBarContainer>
+                <BarChart
+                  data={incomeByTypeData}
+                  width={Dimensions.get("window").width}
+                  height={220}
+                  yAxisLabel=""
+                  chartConfig={BarchartConfig}
+                  verticalLabelRotation={0}
+                />
+              </ChartBarContainer>
+            </ScrollViewContent>
+          </>
+        )}
       </Container>
     </SafeArea>
   );

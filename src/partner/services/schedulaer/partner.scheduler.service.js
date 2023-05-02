@@ -71,7 +71,7 @@ export const getselected = (workingDays, date) => {
 export const reformWorkingHours = (days) => {
   return days.map((day) => {
     if (day.disabled) {
-      return null;
+      return "null";
     }
 
     const startTime = day.startTime.replace(":", "");

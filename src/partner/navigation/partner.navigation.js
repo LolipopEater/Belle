@@ -39,7 +39,7 @@ export const PartnerNavigator = () => (
       <AnalyticsContextProvider>
         {/* {routing system for Partner Portal} */}
         <Tab.Navigator screenOptions={screenOptions}>
-          <Tab.Screen name="DashBoard" component={DashBoardScreen} />
+          {/* <Tab.Screen name="DashBoard" component={DashBoardScreen} /> */}
           <Tab.Screen name="Analytics" component={AnalyticsScreen} />
           {/* <Tab.Screen name="Chat" component={ChatScreen} /> will not be implemented yet*/}
           <Tab.Screen name="Calander" component={CalanderScreen} />

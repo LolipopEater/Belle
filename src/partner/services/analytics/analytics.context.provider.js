@@ -32,7 +32,7 @@ export const AnalyticsContextProvider = ({ children }) => {
   const [appointmentData, setAppointmentData] = useState([]);
   const [ageData, setAgeData] = useState([]);
   const [progressData, setProgressData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = () => {
     setIsLoading(true);
@@ -57,6 +57,9 @@ export const AnalyticsContextProvider = ({ children }) => {
         setIsLoading(false);
         console.error(error);
       });
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Wait for 2 seconds before setting isLoading to false
   };
 
   const Sort = (data) => {
@@ -83,7 +86,9 @@ export const AnalyticsContextProvider = ({ children }) => {
           // Appointments data exists
           const appointmentsData = JSON.parse(appointmentsJson);
           Sort(appointmentsData);
-          setIsLoading(false);
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500); // Wait for 2 seconds before setting isLoading to false
         } else {
           // Appointments data does not exist
           console.log("No appointments found in AsyncStorage");

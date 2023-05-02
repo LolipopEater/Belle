@@ -15,7 +15,18 @@ const SchedlueWrap = styled.View`
   height: 100%;
   align-items: center;
 `;
-
+const ErrorText = styled(Text)`
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+`;
+const ErrorContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+`;
 export const CareGiverDetailScreen = ({ route, navigation }) => {
   const { CareGiver } = route.params;
   const useParams = useContext(SchedulerContext);
@@ -35,40 +46,48 @@ export const CareGiverDetailScreen = ({ route, navigation }) => {
     <SafeArea>
       <ScrollView>
         <CareGiverInfoCard CareGivers={CareGiver} />
-        {useParams.isInProggram && (
-          <List.Section title="Information">
-            <List.Accordion
-              title="About me"
-              left={(props) => <List.Icon {...props} icon="eye" />}
-            >
-              <View>
-                <Text variant="body">{CareGiver.name}</Text>
-                <Text variant="caption">{useParams.about}</Text>
-              </View>
-            </List.Accordion>
-            <List.Accordion
-              title="Services"
-              left={(props) => <List.Icon {...props} icon="exclamation" />}
-            >
-              {useParams.types.map((item) => (
-                <List.Item key={item} title={item} />
-              ))}
-            </List.Accordion>
-          </List.Section>
+        {useParams.isInProggram ? (
+          <>
+            <List.Section title="Information">
+              <List.Accordion
+                title="About me"
+                left={(props) => <List.Icon {...props} icon="eye" />}
+              >
+                <View>
+                  <Text variant="body">{CareGiver.name}</Text>
+                  <Text variant="caption">{useParams.about}</Text>
+                </View>
+              </List.Accordion>
+              <List.Accordion
+                title="Services"
+                left={(props) => <List.Icon {...props} icon="exclamation" />}
+              >
+                {useParams.types.map((item) => (
+                  <List.Item key={item} title={item} />
+                ))}
+              </List.Accordion>
+            </List.Section>
+            <SchedlueWrap>
+              <Schedule
+                title="Schedule"
+                onPress={() =>
+                  navigation.navigate("Schedule", {
+                    info: CareGiver,
+                    navigation: navigation,
+                  })
+                }
+              >
+                <Text>Schedule</Text>
+              </Schedule>
+            </SchedlueWrap>
+          </>
+        ) : (
+          <ErrorContainer>
+            <ErrorText>
+              Sorry, this caregiver has not joined our Partner Program yet.
+            </ErrorText>
+          </ErrorContainer>
         )}
-        <SchedlueWrap>
-          <Schedule
-            title="Schedule"
-            onPress={() =>
-              navigation.navigate("Schedule", {
-                info: CareGiver,
-                navigation: navigation,
-              })
-            }
-          >
-            <Text>Schedule</Text>
-          </Schedule>
-        </SchedlueWrap>
       </ScrollView>
     </SafeArea>
   );

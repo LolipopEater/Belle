@@ -25,7 +25,7 @@ export const SettingTypesScreen = () => {
   const handleAddService = () => {
     if (newService.trim() && newServicePrice.trim()) {
       setServices([...services, newService]);
-      setPrices([newServicePrice]);
+      setPrices([...Prices, newServicePrice]);
       setNewService("");
       setNewServicePrice("");
     }

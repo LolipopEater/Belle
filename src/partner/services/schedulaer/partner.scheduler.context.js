@@ -261,6 +261,9 @@ export const PartnerSchedulerContextProvider = ({ children }) => {
       .catch((error) => {
         console.error(error);
       });
+    setWorking_hours(reformed);
+    const markedDates = getselected(reformed);
+    selectedDay(markedDates);
   };
   const cancelAppoinment = (CareGiverID, CustomerID, TimeStamp, id) => {
     const functions = getFunctions(getApp());
