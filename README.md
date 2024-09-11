@@ -15,7 +15,7 @@
   <p>
     For a detailed overview of the project, including system architecture, use cases, and implementation details, 
     please refer to the full project documentation here: 
-    <a href="link_to_your_PDF" target="_blank"><strong>View Full PDF</strong></a>.
+    <a href="https://github.com/LolipopEater/Belle/blob/master/%D7%90%D7%99%D7%AA%D7%9E%D7%A8%20%D7%A0%D7%97%D7%95%D7%9D%20%D7%A9%D7%9E%D7%97%D7%94%20%D7%A1%D7%A4%D7%A8%20%D7%A4%D7%A8%D7%95%D7%99%D7%99%D7%A7%D7%98-%20BELLE.pdf" target="_blank"><strong>View Full PDF</strong></a>.
   </p>
 </body>
 </html>
